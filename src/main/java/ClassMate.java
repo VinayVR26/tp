@@ -1,3 +1,14 @@
+/**
+ * Serves as the main entry point for the ClassMate application.
+ * <p>
+ * ClassMate is an academic planning and tracking module designed to help
+ * Computer Engineering (CEG) students manage their graduation requirements
+ * and plan their upcoming semesters.
+ * </p>
+ *
+ * @author AY2526S2-CS2113-W11-4
+ * @version v1.0
+ */
 public class ClassMate {
 
     private static String listOfMajorRequirements = "MA1511 Engineering Calculus\n" +
