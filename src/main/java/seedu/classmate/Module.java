@@ -14,7 +14,11 @@ public class Module {
     }
 
     public void addPrerequisite(String prereqCode) {
-        this.prerequisites.add(prereqCode);
+        // Add guard clause against duplicate prerequisite entry: See ModuleTest class
+        boolean isDuplicate = prerequisites.contains(prereqCode);
+        if (!isDuplicate) {
+            this.prerequisites.add(prereqCode);
+        }
     }
 
     @Override
