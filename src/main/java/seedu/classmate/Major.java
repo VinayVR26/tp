@@ -1,4 +1,4 @@
-package seedu.ClassMate;
+package seedu.classmate;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
