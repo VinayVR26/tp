@@ -14,6 +14,7 @@ public class Major {
         setupCEGModules();
     }
 
+    // Print moduleList using cegMajor.toString()
     @Override
     public String toString() {
         if (coreModules.isEmpty()) {
