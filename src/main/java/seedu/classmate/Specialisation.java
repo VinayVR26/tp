@@ -29,7 +29,8 @@ public class Specialisation {
         if (!specialisationCoreModules.isEmpty()) {
             sb.append("Core Specialisation Modules:\n");
             sb.append(specialisationCoreModules.stream()
-            .map(Module::toString).collect(Collectors.joining("\n")));
+                .map(Module::toString)
+                .collect(Collectors.joining("\n")));
 
             sb.append("\n\n");
         }
@@ -37,7 +38,8 @@ public class Specialisation {
         sb.append("Elective Modules (").append(electiveRequirements).append(")\n");
 
         sb.append(specialisationElectiveModules.stream()
-                .map(Module::toString).collect(Collectors.joining("\n")));
+                .map(Module::toString)
+                .collect(Collectors.joining("\n")));
 
         return sb.toString();
     }
@@ -268,6 +270,7 @@ public class Specialisation {
             specialisationElectiveModules.add(ee4503);
             specialisationElectiveModules.add(ee4101);
             break;
+
         case "Industry 4.0":
             electiveRequirements = "Choose any three courses, or totaling at least 12 units, from the list below:";
             specialisationCoreModules.add(ee3331c);
@@ -292,7 +295,8 @@ public class Specialisation {
             break;
 
         case "Robotics":
-            electiveRequirements = "12 Units from electives AND a Capstone (8 Units) in Robotics OR, 20 Units from electives:";
+            electiveRequirements = "12 Units from electives AND a Capstone (8 Units) in Robotics OR, 20 Units " +
+                    "from electives:";
 
             specialisationElectiveModules.add(bn3203);
             specialisationElectiveModules.add(bn4207);
