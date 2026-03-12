@@ -18,17 +18,46 @@ public class ClassMate {
         System.out.println("Type 'help' to see available commands.");
 
         Scanner in = new Scanner(System.in);
-        
+
         while (true) {
             String input = in.nextLine();
 
-            if (input.equalsIgnoreCase("help")) {
-                printHelp();
-            } else if (input.equalsIgnoreCase("bye")) {
-                System.out.println("Goodbye! Happy course planning!");
-                break;
-            } else {
-                System.out.println("Unknown command. Type 'help' to see available commands.");
+            Major major = new Major();
+
+            try {
+                Command command = Parser.parse(input);
+
+                switch (command.getCommandWord()) {
+                case "help":
+                    printHelp();
+                    break;
+
+                case "bye":
+                    goodbyeMessage();
+                    return;
+
+                case "viewGradReq":
+                    System.out.println(major);
+                    break;
+
+                case "prereq":
+                    String moduleCode = command.getArgs();
+                    System.out.println("Checking prerequisites for " + moduleCode);
+                    break;
+
+                case "module":
+                    System.out.println("Printing module info for " + command.getArgs());
+                    break;
+
+                case "specialisations":
+                    System.out.println("Listing all specificiations:");
+                    break;
+
+                default:
+                    throw new ClassMateException("Unknown command.");
+                }
+            } catch (ClassMateException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -61,5 +90,9 @@ public class ClassMate {
         System.out.println("Command: bye");
         System.out.println("- Exit ClassMate");
 
+    }
+
+    private static void goodbyeMessage() {
+        System.out.println("Goodbye! Happy course planning!");
     }
 }
