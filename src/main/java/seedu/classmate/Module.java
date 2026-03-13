@@ -76,6 +76,10 @@ public class Module {
                 ": " + String.join(", ", prerequisites);
     }
 
+    public String getModuleCode() {
+        return this.moduleCode;
+    }
+
     /**
      * Returns the list of prerequisite module codes.
      *
@@ -83,5 +87,51 @@ public class Module {
      */
     public ArrayList<String> getPrerequisites() {
         return prerequisites;
+    }
+
+    public String printPrereqTree(Major major) {
+        StringBuilder sb = new StringBuilder();
+
+        ArrayList<Module> parents = major.findModulesWithPrereq(moduleCode);
+
+        if (!parents.isEmpty()) {
+            StringBuilder parentModules = new StringBuilder();
+            for (Module module : parents) {
+                parentModules.append(module.getModuleCode()).append("  ");
+            }
+            sb.append(parentModules).append("\n");
+            printPrereqTreeHelper(major, "", true, false, sb);
+        } else {
+            printPrereqTreeHelper(major, "", true, true, sb);
+        }
+
+        return sb.toString();
+    }
+
+    private void printPrereqTreeHelper(Major major, String prefix, 
+            boolean isLast, boolean isFirst, StringBuilder sb) {
+        sb.append(prefix);
+        if (!isFirst) {  
+            sb.append(isLast ? "└── " : "├── ");
+        }
+        sb.append(moduleCode).append("\n");
+
+        String newPrefix = prefix + (isLast ? "    " : "│   ");
+
+        for (int i = 0; i < prerequisites.size(); i++) {
+            String prereqCode = prerequisites.get(i);
+            Module prereqModule = major.findModule(prereqCode);
+
+            boolean lastChild = (i == prerequisites.size() - 1);
+
+            if (prereqModule != null) {
+                prereqModule.printPrereqTreeHelper(major, newPrefix, lastChild, false, sb);
+            } else {
+                sb.append(newPrefix)
+                    .append(lastChild ? "└── " : "├── ")
+                    .append(prereqCode)
+                    .append("\n");
+            }
+        }
     }
 }

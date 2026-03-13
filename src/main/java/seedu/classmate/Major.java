@@ -105,4 +105,26 @@ public class Major {
         coreModules.add(cg3207);
         coreModules.add(ee4204);
     }
+
+    public Module findModule(String code) {
+        for (Module m: coreModules) {
+            if (m.getModuleCode().equals(code)) {
+                return m;
+            }
+        }
+
+        return null; // or throw exception
+    }
+
+    public ArrayList<Module> findModulesWithPrereq(String prereqCode) {
+        ArrayList<Module> modules = new ArrayList<>();
+
+        for (Module module: coreModules) {
+            if (module.getPrerequisites().contains(prereqCode)) {
+                modules.add(module);
+            }
+        }
+
+        return modules;
+    }
 }

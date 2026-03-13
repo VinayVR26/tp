@@ -42,7 +42,8 @@ public class ClassMate {
 
                 case "prereq":
                     String moduleCode = command.getArgs();
-                    System.out.println("Checking prerequisites for " + moduleCode);
+                    Module module = major.findModule(moduleCode);
+                    System.out.println(module.printPrereqTree(major));
                     break;
 
                 case "module":
