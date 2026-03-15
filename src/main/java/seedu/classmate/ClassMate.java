@@ -28,7 +28,7 @@ public class ClassMate {
                 case "bye":
                     goodbyeMessage();
                     return;
-                case "viewgraduationreq":
+                case "viewGradReq":
                     System.out.println(major);
                     break;
                 case "prereq":
@@ -71,7 +71,7 @@ public class ClassMate {
      */
     private static void printHelp() {
         System.out.println("List of commands:");
-        System.out.println("Command: view graduation req");
+        System.out.println("Command: view grad req");
         System.out.println("- Print CEG graduation requirements");
         System.out.println("Command: prereq <module code>");
         System.out.println("- Show prerequisites for a module");
