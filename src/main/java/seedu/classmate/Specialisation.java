@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
  */
 public class Specialisation {
 
-    private String specialisationName;
+    public String specialisationName;
+    private String specialisationOverview;
+    private ArrayList<String> generalPrerequisites;
     private ArrayList<Module> specialisationCoreModules;
     private ArrayList<Module> specialisationElectiveModules;
     private String electiveRequirements;
@@ -16,6 +18,7 @@ public class Specialisation {
 
     public Specialisation(String name) {
         this.specialisationName = name;
+        this.generalPrerequisites = new ArrayList<>();
         this.specialisationCoreModules = new ArrayList<>();
         this.specialisationElectiveModules = new ArrayList<>();
         setupCEGSpecialisationModules();
@@ -24,14 +27,20 @@ public class Specialisation {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        //sb.append("Specialisation: ").append(specialisationName).append("Overview\n");
+        //sb.append(specialisationOverview).append("\n\n");
 
-        if (!specialisationCoreModules.isEmpty()) {
-            sb.append("Core Specialisation Modules:\n\n");
-            sb.append(specialisationCoreModules.stream()
-                .map(Module::printInfo)
-                .collect(Collectors.joining("\n")));
-            sb.append("\n\n");
-        }
+        //sb.append("Prerequisites: \n");
+        //for (String prerequisite : generalPrerequisites) {
+          //  sb.append(prerequisite).append("\n");
+        //}
+
+        sb.append("Core Specialisation Modules:\n\n");
+        sb.append(specialisationCoreModules.stream()
+               .map(Module::printInfo)
+               .collect(Collectors.joining("\n")));
+        sb.append("\n\n");
+
 
         sb.append("Elective Modules (").append(electiveRequirements).append(")\n");
 
@@ -219,6 +228,8 @@ public class Specialisation {
 
         switch (specialisationName) {
         case "Internet of Things":
+            specialisationName = "Internet of Things overview";
+
             electiveRequirements = "Choose any two courses, or totaling at least 8 units, from the list below:";
 
             specialisationCoreModules.add(cs3237);
