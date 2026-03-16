@@ -15,7 +15,6 @@ public class SpecialisationOverview {
     }
 
     public void listAllSpecialisations() {
-        System.out.print("List of all CEG Specialisations:");
         for (int specialisationIndex = 0; specialisationIndex < specs.size(); specialisationIndex++) {
             System.out.println((specialisationIndex + 1) + ". " + specs.get(specialisationIndex).specialisationName);
         }

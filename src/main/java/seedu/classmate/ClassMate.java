@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 public class ClassMate {
     private static final Logger logger = Logger.getLogger(ClassMate.class.getName());
+    static SpecialisationOverview specOverview = new SpecialisationOverview();
 
     /**
      * Main entry-point for the java.classmate.Classmate application.
@@ -76,7 +77,17 @@ public class ClassMate {
                     }
                     break;
                 case "specialisations":
-                    System.out.println("Listing all specifications:");
+                    System.out.println("List of all CEG Specialisations:");
+                    specOverview.listAllSpecialisations();
+                    break;
+                case "view":
+                    try {
+                        int specNumber = Integer.parseInt(command.getArgs().trim());
+                        Specialisation selectedSpecialisation = specOverview.getSpecialisationDetails(specNumber);
+                        System.out.println(selectedSpecialisation);
+                    } catch (ClassMateException e) {
+                        System.err.println(e.getMessage());
+                    }
                     break;
                 case "specialisation":
                     String specialisationName = command.getArgs();
