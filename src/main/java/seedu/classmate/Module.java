@@ -138,6 +138,11 @@ public class Module {
                 ": " + String.join(", ", prerequisites);
     }
 
+
+    public String getModuleName() {
+        return moduleName;
+    }
+
     /**
      * Returns the module code.
      *

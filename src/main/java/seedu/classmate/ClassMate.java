@@ -84,7 +84,8 @@ public class ClassMate {
                     try {
                         int specNumber = Integer.parseInt(command.getArgs().trim());
                         Specialisation selectedSpecialisation = specOverview.getSpecialisationDetails(specNumber);
-                        System.out.println(selectedSpecialisation);
+                        specOverview.displaySpecialisationDetails(selectedSpecialisation);
+                        //System.out.println(selectedSpecialisation);
                     } catch (ClassMateException e) {
                         System.err.println(e.getMessage());
                     }

@@ -8,11 +8,22 @@ import java.util.stream.Collectors;
  */
 public class Specialisation {
 
-    public String specialisationName;
+    private String specialisationName;
     private ArrayList<Module> specialisationCoreModules;
     private ArrayList<Module> specialisationElectiveModules;
     private String electiveRequirements;
 
+    public String getSpecialisationName() {
+        return specialisationName;
+    }
+
+    public ArrayList<Module> getSpecialisationCoreModules() {
+        return specialisationCoreModules;
+    }
+
+    public ArrayList<Module> getSpecialisationElectiveModules() {
+        return specialisationElectiveModules;
+    }
 
     public Specialisation(String name) {
         this.specialisationName = name;
