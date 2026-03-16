@@ -26,7 +26,7 @@ public class ClassMate {
         while (true) {
             String input = in.nextLine();
             assert input != null : "Input should not be null";
-            //logger.info("User input: " + input);
+            logger.info("User input: " + input);
             try {
                 String trimmedInput = input.trim();
                 assert trimmedInput != null : "Command should not be null";
