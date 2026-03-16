@@ -82,7 +82,7 @@ public class ClassMate {
                     String specialisationName = command.getArgs();
                     assert specialisationName != null : "Specialisation name should not be null";
                     logger.info("Fetching specialisation: " + specialisationName);
-                    System.out.println("Listing details for " + specialisationName);
+                    System.out.println("Listing details for " + specialisationName + "\n");
                     Specialisation spec = new Specialisation(specialisationName);
                     System.out.println(spec);
                     break;

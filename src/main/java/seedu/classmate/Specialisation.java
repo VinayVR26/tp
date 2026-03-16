@@ -24,10 +24,9 @@ public class Specialisation {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(specialisationName);
 
         if (!specialisationCoreModules.isEmpty()) {
-            sb.append("Core Specialisation Modules:\n");
+            sb.append("Core Specialisation Modules:\n\n");
             sb.append(specialisationCoreModules.stream()
                 .map(Module::printInfo)
                 .collect(Collectors.joining("\n")));
