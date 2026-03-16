@@ -121,3 +121,4 @@ public class ClassMate {
         System.out.println("Goodbye! Happy course planning!");
     }
 }
+
