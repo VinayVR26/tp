@@ -22,6 +22,11 @@ public class SpecialisationOverview {
         System.out.println("Enter <view specialisationNumber> to preview specialisation information.");
     }
 
-    
+    public Specialisation getSpecialisationDetails(int specialisationNumber) {
+        if (specialisationNumber < 0 || specialisationNumber >= specs.size()) {
+            throw new ClassMateException("Invalid specialisation number. Please choose a number between 1 and " + specs.size());
+        }
+        return specs.get(specialisationNumber - 1);
+    }
 
 }
