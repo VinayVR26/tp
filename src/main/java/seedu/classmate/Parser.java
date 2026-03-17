@@ -88,7 +88,6 @@ public class Parser {
                 "View list of all CEG specialisations\n" +
                 "- viewSpecialisationInfo SPECIALISATION_INDEX: " +
                 "View specific requirements for a specialisation. See viewSpecialisation for index");
-
     }
 }
 
