@@ -95,7 +95,7 @@ class ModuleTest {
     }
 
     @Test
-    void checkAvailability_sem1_wrongQuery_returnsNo() {
+    void checkAvailability_wrongSem_returnsNo() {
         Module module = new Module("CG2027", "Transistor-level Digital Circuit");
         module.setSemester("1");
         String result = module.checkAvailability("sem2");
