@@ -1,6 +1,7 @@
 package seedu.classmate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
@@ -68,7 +69,7 @@ class ModuleTest {
     void printInfo_noPrerequisites_showsCanTakeYes() {
         Module module = new Module("CS1010", "Programming Methodology");
         String info = module.printInfo();
-        assertEquals(true, info.contains("Can take: YES"));
+        assertTrue(info.contains("Can take: YES"));
     }
 
     @Test
@@ -76,7 +77,7 @@ class ModuleTest {
         Module module = new Module("CS2113", "Software Engineering & OOP");
         module.addPrerequisite("CS2040C");
         String info = module.printInfo();
-        assertEquals(true, info.contains("Can take: NO"));
+        assertTrue(info.contains("Can take: NO"));
     }
 
     @Test
