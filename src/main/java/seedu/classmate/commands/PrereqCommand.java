@@ -17,7 +17,7 @@ public class PrereqCommand extends Command{
     @Override
     public void executeCommand(Major major, Display display, SpecialisationOverview specialisationOverview) {
         if (moduleCode.isEmpty()) {
-            throw new ClassMateException("Please provide a module code: prereq <module code>");
+            throw new ClassMateException("Please provide a module code: viewPrereqs <MODULE_CODE>");
         }
 
         Module module = major.findModule(moduleCode);

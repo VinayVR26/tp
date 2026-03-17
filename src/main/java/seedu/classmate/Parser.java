@@ -7,8 +7,8 @@ import seedu.classmate.commands.PrereqCommand;
 import seedu.classmate.commands.PrintModuleInfoCommand;
 import seedu.classmate.commands.QueryModuleAvailabilityCommand;
 import seedu.classmate.commands.SpecialisationInfoCommand;
-import seedu.classmate.commands.SpecialisationsCommand;
-import seedu.classmate.commands.ViewGradReqCommand;
+import seedu.classmate.commands.ViewGradReqsCommand;
+import seedu.classmate.commands.ViewSpecialisationsCommand;
 
 /**
  * Parses user input commands and returns the corresponding command description.
@@ -48,7 +48,7 @@ public class Parser {
             return new ByeCommand();
 
         case "viewGradReqs":
-            return new ViewGradReqCommand();
+            return new ViewGradReqsCommand();
 
         case "viewPrereqs":
             return new PrereqCommand(args);
@@ -60,7 +60,7 @@ public class Parser {
             return new QueryModuleAvailabilityCommand(args);
 
         case "viewSpecialisations":
-            return new SpecialisationsCommand();
+            return new ViewSpecialisationsCommand();
 
         case "viewSpecialisationInfo":
             return new SpecialisationInfoCommand(args);
@@ -90,3 +90,4 @@ public class Parser {
                 "View specific requirements for a specialisation. See viewSpecialisation for index");
     }
 }
+

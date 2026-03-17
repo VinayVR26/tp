@@ -18,8 +18,7 @@ public class SpecialisationInfoCommand extends Command {
     public void executeCommand(Major major, Display display, SpecialisationOverview specialisationOverview) {
 
         if (args.isEmpty()) {
-            throw new ClassMateException("Please provide a specialisation number:" +
-                    " specialisation <index>");
+            throw new ClassMateException("Please provide a specialisation index: viewSpecialisationInfo <INDEX>");
         }
 
         try {

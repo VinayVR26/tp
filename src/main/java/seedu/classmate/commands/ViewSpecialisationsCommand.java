@@ -4,13 +4,12 @@ import seedu.classmate.Display;
 import seedu.classmate.Major;
 import seedu.classmate.SpecialisationOverview;
 
-/**
- * Prints the CEG graduation requirements.
- */
-public class ViewGradReqCommand extends Command{
+
+public class ViewSpecialisationsCommand extends Command {
 
     @Override
     public void executeCommand(Major major, Display display, SpecialisationOverview specialisationOverview) {
-        System.out.println(major);
+        System.out.println("List of all CEG Specialisations:");
+        SpecialisationOverview.listAllSpecialisations();
     }
 }

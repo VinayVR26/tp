@@ -16,7 +16,7 @@ public class QueryModuleAvailabilityCommand extends Command {
         String[] parts = args.trim().split("\\s+");
 
         if (parts.length < 2) {
-            throw new ClassMateException("Format: queryModuleAvailability <module code> <sem1/sem2>");
+            throw new ClassMateException("Format: queryModuleAvailability <MODULE_CODE> <SEM>");
         }
 
         this.moduleCode = parts[0].toUpperCase();
