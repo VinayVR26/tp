@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * specialisation, and print detailed infromation about a selected specialisation.
  */
 public class SpecialisationOverview {
-    private ArrayList<Specialisation> specs;
+    private static ArrayList<Specialisation> specs;
 
     /**
      * Constructs a SpecialisationOverview object and initialises the list of available CEG specialisations.
@@ -34,12 +34,12 @@ public class SpecialisationOverview {
      * Each specialisation is printed with a corresponding number that
      * can be used by the user to select and view more details about a specific specialisation.
      */
-    public void listAllSpecialisations() {
+    public static void listAllSpecialisations() {
         for (int specialisationIndex = 0; specialisationIndex < specs.size(); specialisationIndex++) {
             System.out.println((specialisationIndex + 1) + ". "
                     + specs.get(specialisationIndex).getSpecialisationName());
         }
-        System.out.println("Enter <view specialisationNumber> to preview specialisation information.");
+        System.out.println("Enter <specialisation [index]> to preview specialisation information.");
     }
 
     /**
@@ -76,11 +76,15 @@ public class SpecialisationOverview {
      * @throws ClassMateException If the provided number is outside the range of available specialisations.
      */
     public Specialisation getSpecialisationDetails(int specialisationNumber) {
-        if (specialisationNumber < 0 || specialisationNumber >= specs.size()) {
+        if (specialisationNumber < 1 || specialisationNumber > specs.size()) {
             throw new ClassMateException("Invalid specialisation number. Please choose a number between 1 and "
                     + specs.size());
         }
         return specs.get(specialisationNumber - 1);
+    }
+
+    public ArrayList<Specialisation> getAllSpecialisations() {
+        return specs;
     }
 
 }

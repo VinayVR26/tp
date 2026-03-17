@@ -1,7 +1,14 @@
 package seedu.classmate;
 
-import java.util.HashMap;
-import java.util.Map;
+import seedu.classmate.commands.ByeCommand;
+import seedu.classmate.commands.Command;
+import seedu.classmate.commands.HelpCommand;
+import seedu.classmate.commands.PrereqCommand;
+import seedu.classmate.commands.PrintModuleInfoCommand;
+import seedu.classmate.commands.QueryModuleAvailabilityCommand;
+import seedu.classmate.commands.SpecialisationInfoCommand;
+import seedu.classmate.commands.SpecialisationsCommand;
+import seedu.classmate.commands.ViewGradReqCommand;
 
 /**
  * Parses user input commands and returns the corresponding command description.
@@ -13,18 +20,6 @@ import java.util.Map;
  */
 public class Parser {
 
-    private static final Map<String, String> COMMANDS = new HashMap<>();
-
-    static {
-        COMMANDS.put("help", "Viewing help");
-        COMMANDS.put("viewGradReq", "Print CEG graduation requirements");
-        COMMANDS.put("printModuleInfo", "Print information about a specific module");
-        COMMANDS.put("prereq", "Print module prerequisites");
-        COMMANDS.put("viewModAvail", "Query module availability");
-        COMMANDS.put("specialisations", "Print CEG specialisations");
-        COMMANDS.put("specialisation", "Print specific CEG specialisation info");
-    }
-
     /**
      * Parses the user's input and determines whether it matches a valid command.
      *
@@ -33,7 +28,7 @@ public class Parser {
      *         or a message associated with the command if it exists.
      * @throws ClassMateException If the input provided is empty after trimming.
      */
-    public static String parseCommand(String input) {
+    public static Command parse(String input) {
 
         String trimmed = input.trim();
 
@@ -41,11 +36,38 @@ public class Parser {
             throw new ClassMateException("Please enter a non-empty input!");
         }
 
-        if (COMMANDS.containsKey(trimmed)) {
-            return COMMANDS.get(trimmed);
-        }
+        String[] arguments = trimmed.split("\\s+", 2);
+        String commandWord = arguments[0];
+        String args = arguments.length > 1 ? arguments[1] : "";
 
-        return "Unknown command. Enter 'help for available commands.";
+        switch (commandWord) {
+        case "help":
+            return new HelpCommand();
+
+        case "bye":
+            return new ByeCommand();
+
+        case "viewGradReq":
+            return new ViewGradReqCommand();
+
+        case "prereq":
+            return new PrereqCommand(args);
+
+        case "printModuleInfo":
+            return new PrintModuleInfoCommand(args);
+
+        case "queryModuleAvailability":
+            return new QueryModuleAvailabilityCommand(args);
+
+        case "specialisations":
+            return new SpecialisationsCommand();
+
+        case "specialisation":
+            return new SpecialisationInfoCommand(args);
+
+        default:
+            throw new ClassMateException("Unknown command. Enter 'help' for available commands.");
+        }
     }
 
     /**
@@ -55,16 +77,14 @@ public class Parser {
     public static void displayHelp() {
         System.out.println("Available commands:");
         System.out.println("- help: Viewing help");
-        System.out.println("- view: Print CEG graduation requirements: " +
+        System.out.println("- viewGradReq: Print CEG graduation requirements: " +
                 "view course requirements and specialisations");
-        System.out.println("- check: Query for module prerequisites: " +
-                "check what prerequisites are needed to take the module");
-        System.out.println("- show: Print module info: show details for a specific module");
-        System.out.println("- query: Query module availability: " +
+        System.out.println("- printModuleInfo: Print module info: show details for a specific module");
+        System.out.println("- queryModuleAvailability: Query module availability: " +
                 "Boolean return yes or no if module can be taken in a certain semester");
         System.out.println("- specialisations: Print CEG specialisations: " +
                 "view list of specialisations");
-        System.out.println("- specialisations_info: Print CEG specialisations info: " +
+        System.out.println("- specialisationInfo <index>: Print CEG specialisations info: " +
                 "view course specialisations and requirements in more detail");
     }
 }
