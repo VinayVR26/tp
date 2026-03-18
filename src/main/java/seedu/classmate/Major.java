@@ -64,14 +64,15 @@ public class Major {
         Module ee4204 = new Module("EE4204", "Computer Networks");
 
         // Set up semesters
-        ma1511.setSemester("1");
-        ma1512.setSemester("2");
+        ma1511.setSemester("1/2");
+        ma1512.setSemester("1/2");
         ma1508e.setSemester("2");
-        cg2111a.setSemester("2");
+        cg1111a.setSemester("1");
+        cg2111a.setSemester("1");
         cg2023.setSemester("2");
         cg2027.setSemester("1");
         cg2028.setSemester("2");
-        ee2026.setSemester("1");
+        ee2026.setSemester("1/2");
         cg2271.setSemester("1");
         cg3201.setSemester("2");
         cg3207.setSemester("1");

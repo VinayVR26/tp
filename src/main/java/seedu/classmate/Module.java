@@ -88,6 +88,9 @@ public class Module {
         assert querySemester != null : "Query semester should not be null";
         assert !querySemester.trim().isEmpty() : "Query semester should not be empty";
         String query = querySemester.trim().toLowerCase();
+        if (!query.equals("sem1") && !query.equals("sem2")) {
+            return "Invalid semester. Please enter sem1 or sem2.";
+        }
         if (semester.equals("1/2")) {
             return moduleCode + " is available in both Semester 1 and Semester 2.";
         } else if (semester.equals("1") && query.equals("sem1")) {
