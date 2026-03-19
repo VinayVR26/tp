@@ -3,9 +3,11 @@ import org.junit.jupiter.api.Test;
 import seedu.classmate.commands.Command;
 import seedu.classmate.commands.HelpCommand;
 import seedu.classmate.commands.PrereqCommand;
-import seedu.classmate.commands.ViewSpecialisationsCommand;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 
 public class ParserTest {
