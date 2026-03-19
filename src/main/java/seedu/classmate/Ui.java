@@ -23,7 +23,7 @@ public class Ui {
         printLine();
     }
 
-    public void showGoodbye() {
+    public static void showGoodbye() {
         System.out.println("Goodbye! Happy course planning!");
         printLine();
     }
