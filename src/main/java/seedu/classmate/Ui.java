@@ -47,12 +47,17 @@ public class Ui {
         printLine();
     }
 
-    /* Ensure SRP between Ui and exception handler:
-    *  A separate class catches the exception
-    *  Ui handles printing the error in standardised format
-    */
+    /**
+     * Prints a standardized error message to the user.
+     * * DESIGN RATIONALE: Adheres to the Single Responsibility Principle (SRP) by
+     * decoupling error detection from error presentation. Logic classes (Parser/Command)
+     * throw {@code ClassMateException}, the coordinator class catches it, and this
+     * method handles the final string formatting for the user.
+     *
+     * @param errorMessage The specific error detail to be displayed. Must not be null.
+     */
     public void showError(String errorMessage) {
-        // Assertion to ensure error handler layer provides a message
+        // Assertion: Ensure error handler layer provides a message
         assert errorMessage != null : "Error message passed to UI should not be null";
 
     printLine();
