@@ -24,7 +24,7 @@ public class Parser {
      * @return A {@code Command} object representing the user's input.
      * @throws ClassMateException If the input provided is empty or the command is unknown.
      */
-    public static Command parse(String input) {
+    public static Command parse(String input) throws ClassMateException {
 
         String trimmed = input.trim();
 
@@ -32,38 +32,11 @@ public class Parser {
             throw new ClassMateException("Please enter a non-empty input!");
         }
 
-        String[] arguments = trimmed.split("\\s+", 2);
-        String commandWord = arguments[0];
-        String args = arguments.length > 1 ? arguments[1] : "";
+        String[] components = trimmed.split("\\s+", 2);
+        String commandWord = components[0].toLowerCase();
+        String arguments = (components.length > 1) ? components[1].trim() : "";
 
-        switch (commandWord) {
-        case "help":
-            return new HelpCommand();
-
-        case "bye":
-            return new ByeCommand();
-
-        case "viewGradReqs":
-            return new ViewGradReqsCommand();
-
-        case "viewPrereqs":
-            return new PrereqCommand(args);
-
-        case "printModuleInfo":
-            return new PrintModuleInfoCommand(args);
-
-        case "queryModuleAvailability":
-            return new QueryModuleAvailabilityCommand(args);
-
-        case "viewSpecialisations":
-            return new ViewSpecialisationsCommand();
-
-        case "viewSpecialisationInfo":
-            return new SpecialisationInfoCommand(args);
-
-        default:
-            throw new ClassMateException("Unknown command. Enter 'help' for available commands.");
-        }
+        return CommandManager.createCommand(commandWord, arguments);
     }
 
 }
