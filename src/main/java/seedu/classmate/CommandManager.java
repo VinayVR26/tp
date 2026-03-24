@@ -8,11 +8,15 @@ import seedu.classmate.commands.PrintModuleInfoCommand;
 import seedu.classmate.commands.QueryModuleAvailabilityCommand;
 import seedu.classmate.commands.SpecialisationInfoCommand;
 import seedu.classmate.commands.ViewGradReqsCommand;
+import seedu.classmate.commands.MarkDoneCommand;
+import seedu.classmate.commands.ViewDoneCommand;
+import java.util.ArrayList;
 import seedu.classmate.commands.ViewSpecialisationsCommand;
 
 public class CommandManager {
 
-    public static Command createCommand(String commandWord, String arguments) {
+    public static Command createCommand(String commandWord, String arguments,
+            ArrayList<String> completedModules, Storage storage) {
         switch (commandWord) {
         case "help":
             return new HelpCommand();
@@ -37,6 +41,12 @@ public class CommandManager {
 
         case "viewspecialisationinfo":
             return new SpecialisationInfoCommand(arguments);
+
+        case "markdone":
+            return new MarkDoneCommand(arguments, completedModules, storage);
+
+        case "viewdone":
+            return new ViewDoneCommand(completedModules);
 
         default:
             throw new ClassMateException("Unknown command. Enter 'help' for available commands.");

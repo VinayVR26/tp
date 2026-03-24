@@ -1,6 +1,7 @@
 package seedu.classmate;
 
 import seedu.classmate.commands.Command;
+import java.util.ArrayList;
 
 /**
  * Parses user input and converts it into the corresponding {@code Command} object
@@ -16,7 +17,8 @@ public class Parser {
      * @return A {@code Command} object representing the user's input.
      * @throws ClassMateException If the input provided is empty or the command is unknown.
      */
-    public static Command parse(String input) throws ClassMateException {
+    public static Command parse(String input, ArrayList<String> completedModules,
+            Storage storage) throws ClassMateException {
 
         String trimmed = input.trim();
 
@@ -32,7 +34,7 @@ public class Parser {
         String commandWord = components[0].toLowerCase();
         String arguments = (components.length > 1) ? components[1].trim().toUpperCase() : "";
 
-        return CommandManager.createCommand(commandWord, arguments);
+        return CommandManager.createCommand(commandWord, arguments, completedModules, storage);
     }
 }
 

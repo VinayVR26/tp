@@ -1,6 +1,7 @@
 package seedu.classmate;
 import seedu.classmate.commands.Command;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -18,6 +19,8 @@ public class ClassMate {
         Scanner in = new Scanner(System.in);
         Major major = new Major();
         SpecialisationOverview specOverview = new SpecialisationOverview();
+        Storage storage = new Storage();
+        ArrayList<String> completedModules = storage.load();
 
         boolean isExit = false; // Flag to determine whether to exit Program
 
@@ -35,7 +38,7 @@ public class ClassMate {
             logger.info("User input: " + input);
 
             try {
-                Command command = Parser.parse(input);
+                Command command = Parser.parse(input, completedModules, storage);
                 command.executeCommand(major, ui, specOverview);
 
                 isExit = command.isExit();

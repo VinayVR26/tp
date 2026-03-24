@@ -1,0 +1,38 @@
+package seedu.classmate.commands;
+
+import seedu.classmate.Ui;
+import seedu.classmate.Major;
+import seedu.classmate.SpecialisationOverview;
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+/**
+ * Displays the list of completed modules.
+ */
+public class ViewDoneCommand extends Command {
+    private static final Logger logger = Logger.getLogger(ViewDoneCommand.class.getName());
+    private final ArrayList<String> completedModules;
+
+    /**
+     * Constructs a ViewDoneCommand.
+     *
+     * @param completedModules The list of completed modules to display.
+     */
+    public ViewDoneCommand(ArrayList<String> completedModules) {
+        assert completedModules != null : "Completed modules list should not be null";
+        this.completedModules = completedModules;
+    }
+
+    @Override
+    public void executeCommand(Major major, Ui display, SpecialisationOverview specOverview) {
+        logger.info("Viewing completed modules.");
+        if (completedModules.isEmpty()) {
+            System.out.println("You have not marked any modules as done yet.");
+            return;
+        }
+        System.out.println("Completed modules:");
+        for (String moduleCode : completedModules) {
+            System.out.println("- " + moduleCode);
+        }
+    }
+}
