@@ -12,7 +12,15 @@ import java.util.logging.Logger;
  */
 public class Storage {
     private static final Logger logger = Logger.getLogger(Storage.class.getName());
-    private static final String FILE_PATH = "data/completedModules.txt";
+    private final String filePath;
+
+    public Storage() {
+        this.filePath = "data/completedMdules.txt";
+    }
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
 
     /**
      * Saves the list of completed module codes to a file.
@@ -26,7 +34,7 @@ public class Storage {
             if (!dir.exists()) {
                 dir.mkdir();
             }
-            FileWriter writer = new FileWriter(FILE_PATH);
+            FileWriter writer = new FileWriter(filePath);
             for (String moduleCode : completedModules) {
                 writer.write(moduleCode + "\n");
             }
@@ -46,7 +54,7 @@ public class Storage {
     public ArrayList<String> load() {
         ArrayList<String> completedModules = new ArrayList<>();
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(filePath);
             if (!file.exists()) {
                 logger.info("No save file found. Starting fresh.");
                 return completedModules;

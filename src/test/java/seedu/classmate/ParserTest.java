@@ -4,7 +4,14 @@ import org.junit.jupiter.api.Test;
 import seedu.classmate.commands.ByeCommand;
 import seedu.classmate.commands.Command;
 import seedu.classmate.commands.HelpCommand;
+import seedu.classmate.commands.MarkDoneCommand;
 import seedu.classmate.commands.PrereqCommand;
+import seedu.classmate.commands.PrintModuleInfoCommand;
+import seedu.classmate.commands.QueryModuleAvailabilityCommand;
+import seedu.classmate.commands.SpecialisationInfoCommand;
+import seedu.classmate.commands.ViewDoneCommand;
+import seedu.classmate.commands.ViewGradReqsCommand;
+import seedu.classmate.commands.ViewSpecialisationsCommand;
 
 import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
+/**
+ * Contains unit tests for the Parser class.
+ * Tests whether user input is correctly parsed into Command objects.
+ */
 public class ParserTest {
 
     private final ArrayList<String> completedModules = new ArrayList<>();
@@ -60,4 +71,55 @@ public class ParserTest {
         assertEquals("Unknown command. Enter 'help' for available commands.", exception.getMessage(),
                 "Error message informs the user that the command is invalid");
     }
+
+    @Test
+    public void testViewGradeReqsCommand() {
+        Command command = Parser.parse("viewGradReqs", completedModules, storage);
+
+        assertInstanceOf(ViewGradReqsCommand.class, command);
+    }
+
+    @Test
+    public void testSpecialisationInfoCommand() {
+        Command command = Parser.parse("viewSpecialisationInfo 2", completedModules, storage);
+
+        assertInstanceOf(SpecialisationInfoCommand.class, command);
+    }
+
+    @Test
+    public void testViewModuleInfoCommand() {
+        Command command = Parser.parse("viewModuleInfo CS2113", completedModules, storage);
+
+        assertInstanceOf(PrintModuleInfoCommand.class, command);
+    }
+
+    @Test
+    public void testQueryModuleAvailabilityCommand() {
+        Command command = Parser.parse("queryModuleAvailability CG2023 sem1", completedModules, storage);
+
+        assertInstanceOf(QueryModuleAvailabilityCommand.class, command);
+    }
+
+    @Test
+    public void testViewSpecialisationsCommand() {
+        Command command = Parser.parse("viewSpecialisations", completedModules, storage);
+
+        assertInstanceOf(ViewSpecialisationsCommand.class, command);
+    }
+
+    @Test
+    public void testMarkDoneCommand() {
+        Command command = Parser.parse("markDone CS2113", completedModules, storage);
+
+        assertInstanceOf(MarkDoneCommand.class, command);
+    }
+
+    @Test
+    public void testViewDoneCommand() {
+        Command command = Parser.parse("viewDone", completedModules, storage);
+
+        assertInstanceOf(ViewDoneCommand.class, command);
+    }
+
+
 }
