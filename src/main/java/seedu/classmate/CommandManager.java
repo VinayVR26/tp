@@ -11,6 +11,7 @@ import seedu.classmate.commands.ViewGradReqsCommand;
 import seedu.classmate.commands.MarkDoneCommand;
 import seedu.classmate.commands.ViewDoneCommand;
 import java.util.ArrayList;
+import seedu.classmate.commands.CheckPrereqStatusCommand;
 import seedu.classmate.commands.ViewSpecialisationsCommand;
 
 public class CommandManager {
@@ -44,6 +45,9 @@ public class CommandManager {
 
         case "markdone":
             return new MarkDoneCommand(arguments, completedModules, storage);
+
+        case "checkprereqstatus":
+            return new CheckPrereqStatusCommand(arguments, completedModules);
 
         case "viewdone":
             return new ViewDoneCommand(completedModules);
