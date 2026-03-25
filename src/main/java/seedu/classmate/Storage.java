@@ -15,7 +15,7 @@ public class Storage {
     private final String filePath;
 
     public Storage() {
-        this.filePath = "data/completedMdules.txt";
+        this.filePath = "data/completedModules.txt";
     }
 
     public Storage(String filePath) {
