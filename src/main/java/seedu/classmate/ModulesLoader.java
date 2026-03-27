@@ -7,8 +7,8 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class ModulesLoader {
-    private static final String CORE_MODULES_PATH = "./data/core-modules.txt";
-    private static final String SPECIALISATION_MODULES_PATH = "./data/specialisation-modules.txt";
+    private static final String CORE_MODULES_PATH = "../../data/core-modules.txt";
+    private static final String SPECIALISATION_MODULES_PATH = "../../data/specialisation-modules.txt";
     private static final int NUMBER_OF_TOKENS_IN_CORE_MODULE_FILE_LINE = 4;
     private static final int NUMBER_OF_TOKENS_IN_SPECIALISATION_MODULE_FILE_LINE = 6;
 
