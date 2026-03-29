@@ -18,7 +18,7 @@ public class Parser {
      * @throws ClassMateException If the input provided is empty or the command is unknown.
      */
     public static Command parse(String input, ArrayList<String> completedModules,
-            Storage storage) throws ClassMateException {
+            Storage storage, UserProfile userProfile) throws ClassMateException {
 
         String trimmed = input.trim();
 
@@ -34,7 +34,7 @@ public class Parser {
         String commandWord = components[0].toLowerCase();
         String arguments = (components.length > 1) ? components[1].trim().toUpperCase() : "";
 
-        return CommandManager.createCommand(commandWord, arguments, completedModules, storage);
+        return CommandManager.createCommand(commandWord, arguments, completedModules, storage, userProfile);
     }
 }
 

@@ -1,4 +1,5 @@
 package seedu.classmate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.classmate.commands.ByeCommand;
@@ -12,6 +13,7 @@ import seedu.classmate.commands.SpecialisationInfoCommand;
 import seedu.classmate.commands.ViewDoneCommand;
 import seedu.classmate.commands.ViewGradReqsCommand;
 import seedu.classmate.commands.ViewSpecialisationsCommand;
+import seedu.classmate.commands.CheckProfileCommand;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,26 +32,27 @@ public class ParserTest {
     private final ArrayList<String> completedModules = new ArrayList<>();
     private final Storage storage = new Storage();
     private final Ui ui = new Ui();
+    private final UserProfile userProfile = new UserProfile();
     private final Major major = new Major(new ArrayList<>());
     private final SpecialisationOverview specOverview = new SpecialisationOverview(new HashMap<>());
 
     @Test
     public void testHelpCommand() {
-        Command command = Parser.parse("help", completedModules, storage);
+        Command command = Parser.parse("help", completedModules, storage, userProfile);
         assertTrue(command instanceof HelpCommand);
     }
 
     @Test
     public void testEmptyCommand() {
         Exception exception = assertThrows(ClassMateException.class,
-                () -> Parser.parse("", completedModules, storage));
+                () -> Parser.parse("", completedModules, storage, userProfile));
         assertEquals("Please enter a non-empty input!", exception.getMessage());
     }
 
     @Test
     public void testUnknownCommand() {
         Exception exception = assertThrows(ClassMateException.class,
-                () -> Parser.parse("unknownCommand", completedModules, storage));
+                () -> Parser.parse("unknownCommand", completedModules, storage, userProfile));
         assertEquals("Unknown command. Enter 'help' for available commands.",
                 exception.getMessage());
     }
@@ -57,21 +60,21 @@ public class ParserTest {
     @Test
     public void parse_byeInput_returnsByeCommand() {
         String input = "bye";
-        Command result = Parser.parse(input, completedModules, storage);
+        Command result = Parser.parse(input, completedModules, storage, userProfile);
         assertInstanceOf(ByeCommand.class, result);
     }
 
     @Test
     public void parseValidCommandWithMixedCase() {
         String userInput = "ViEwPrErEqS Cs2113";
-        Command output = Parser.parse(userInput, completedModules, storage);
+        Command output = Parser.parse(userInput, completedModules, storage, userProfile);
         assertInstanceOf(PrereqCommand.class, output, "Output is of type PrereqCommand");
     }
 
     @Test
     public void parseValidCommandWithInvalidArgument_throwsException() {
         String userInput = "viewprereqs Cs211";
-        Command command = Parser.parse(userInput, completedModules, storage);
+        Command command = Parser.parse(userInput, completedModules, storage, userProfile);
 
         ClassMateException exception = assertThrows(ClassMateException.class,
                 () -> command.executeCommand(major, ui, specOverview));
@@ -84,59 +87,56 @@ public class ParserTest {
     public void parseInvalidCommandWithMixedCase() {
         String userInput = "aCommand Cs2113";
         ClassMateException exception = assertThrows(ClassMateException.class,
-                () -> Parser.parse(userInput, completedModules, storage));
+                () -> Parser.parse(userInput, completedModules, storage, userProfile));
         assertEquals("Unknown command. Enter 'help' for available commands.", exception.getMessage(),
                 "Error message informs the user that the command is invalid");
     }
 
     @Test
     public void testViewGradeReqsCommand() {
-        Command command = Parser.parse("viewGradReqs", completedModules, storage);
-
+        Command command = Parser.parse("viewGradReqs", completedModules, storage, userProfile);
         assertInstanceOf(ViewGradReqsCommand.class, command);
     }
 
     @Test
     public void testSpecialisationInfoCommand() {
-        Command command = Parser.parse("viewSpecialisationInfo 2", completedModules, storage);
-
+        Command command = Parser.parse("viewSpecialisationInfo 2", completedModules, storage, userProfile);
         assertInstanceOf(SpecialisationInfoCommand.class, command);
     }
 
     @Test
     public void testViewModuleInfoCommand() {
-        Command command = Parser.parse("viewModuleInfo CS2113", completedModules, storage);
-
+        Command command = Parser.parse("viewModuleInfo CS2113", completedModules, storage, userProfile);
         assertInstanceOf(PrintModuleInfoCommand.class, command);
     }
 
     @Test
     public void testQueryModuleAvailabilityCommand() {
-        Command command = Parser.parse("queryModuleAvailability CG2023 sem1", completedModules, storage);
-
+        Command command = Parser.parse("queryModuleAvailability CG2023 sem1", completedModules, storage, userProfile);
         assertInstanceOf(QueryModuleAvailabilityCommand.class, command);
     }
 
     @Test
     public void testViewSpecialisationsCommand() {
-        Command command = Parser.parse("viewSpecialisations", completedModules, storage);
-
+        Command command = Parser.parse("viewSpecialisations", completedModules, storage, userProfile);
         assertInstanceOf(ViewSpecialisationsCommand.class, command);
     }
 
     @Test
     public void testMarkDoneCommand() {
-        Command command = Parser.parse("markDone CS2113", completedModules, storage);
-
+        Command command = Parser.parse("markDone CS2113", completedModules, storage, userProfile);
         assertInstanceOf(MarkDoneCommand.class, command);
     }
 
     @Test
     public void testViewDoneCommand() {
-        Command command = Parser.parse("viewDone", completedModules, storage);
-
+        Command command = Parser.parse("viewDone", completedModules, storage, userProfile);
         assertInstanceOf(ViewDoneCommand.class, command);
     }
 
-
+    @Test
+    public void testCheckProfileCommand() {
+        Command command = Parser.parse("checkProfile", completedModules, storage, userProfile);
+        assertInstanceOf(CheckProfileCommand.class, command);
+    }
 }
