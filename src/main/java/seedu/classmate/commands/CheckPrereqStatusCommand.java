@@ -1,5 +1,5 @@
-// @@author neerajehh
 package seedu.classmate.commands;
+// @@author neerajehh
 
 import seedu.classmate.ClassMateException;
 import seedu.classmate.Major;
