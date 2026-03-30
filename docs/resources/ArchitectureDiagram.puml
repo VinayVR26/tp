@@ -1,0 +1,42 @@
+@startuml
+!theme plain
+skinparam componentStyle rectangle
+skinparam shadowing false
+left to right direction
+
+actor User
+
+rectangle "ClassMate" {
+    [Ui]
+    [Parser]
+    [CommandManager]
+    [Storage]
+    [ModulesLoader]
+
+    rectangle "Model" {
+        [UserProfile]
+        [Major]
+        [Module]
+        [SpecialisationOverview]
+        [Specialisation]
+    }
+}
+
+User --> Ui : enters commands
+Ui --> Parser : passes raw input
+Parser --> CommandManager : creates command
+CommandManager --> Model : reads / updates data
+CommandManager --> Storage : saves / loads data
+CommandManager --> Ui : returns result
+
+ModulesLoader --> Model : loads module data at startup
+Storage --> Model : persists user data
+
+Ui ..> Parser : <<uses>>
+Parser ..> CommandManager : <<uses>>
+CommandManager ..> Model : <<uses>>
+CommandManager ..> Storage : <<uses>>
+ModulesLoader ..> Model : <<uses>>
+Storage ..> Model : <<uses>>
+
+@enduml

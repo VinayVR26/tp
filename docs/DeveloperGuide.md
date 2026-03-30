@@ -7,6 +7,8 @@ Refer to the guide [_Getting started_](link).
 
 ## **Design**
 ### Architecture
+ClassMate follows a simple component-based architecture. Each component has a clear responsibility and communicates through well-defined interfaces.
+![Architecture Diagram](resources/ArchitectureDiagram.png)
 The architecture of ClassMate is kept simple as all components reside in a single package. The main components are described in the Components section below.
 
 ### Components:
