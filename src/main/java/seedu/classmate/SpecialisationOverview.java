@@ -29,17 +29,12 @@ public class SpecialisationOverview {
     }
 
     /**
-     * Displays all available specialisations to the user.
+     * Getter for obtaining the list of specialisations.
      *
-     * Each specialisation is printed with a corresponding number that
-     * can be used by the user to select and view more details about a specific specialisation.
+     * @return The Array List of specialisations.
      */
-    public static void listAllSpecialisations() {
-        for (int specialisationIndex = 0; specialisationIndex < specs.size(); specialisationIndex++) {
-            System.out.println((specialisationIndex + 1) + ". "
-                    + specs.get(specialisationIndex).getSpecialisationName());
-        }
-        System.out.println("Enter <viewSpecialisationInfo [index]> to know more about a specialisation.");
+    public ArrayList<Specialisation> getSpecialisations() {
+        return specs;
     }
 
     /**
