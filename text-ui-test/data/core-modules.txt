@@ -16,4 +16,4 @@ Introduction to Information Security,CS2107,1/2,CS1010
 Real-time Operating System,CG2271,1,CG1111A|CS2040C
 Machine Learning and Deep Learning,CG3201,2,EE2211|CS2040C
 Computer Architecture,CG3207,1,CG2028
-Computer Networks,EE4204,2,None
+Computer Networks,EE4204,2,ST2334

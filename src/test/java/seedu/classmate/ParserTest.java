@@ -82,6 +82,17 @@ public class ParserTest {
                 "Error message informs the user that the module is not found");
     }
 
+    @Test
+    public void parseExactValidCommandWithInvalidArgument_throwsException() {
+        String userInput = "viewPreReqs Cs211";
+        Command command = Parser.parse(userInput, completedModules, storage, userProfile);
+
+        ClassMateException exception = assertThrows(ClassMateException.class,
+                () -> command.executeCommand(major, ui, specOverview));
+        assertEquals("Module CS211 not found", exception.getMessage(),
+                "Error message informs the user that the module is not found");
+    }
+
 
     @Test
     public void parseInvalidCommandWithMixedCase() {
