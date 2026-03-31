@@ -89,5 +89,13 @@ class ModuleTest {
         String result = module.checkAvailability("sem2");
         assertEquals("No, CG2027 is not available in sem2.", result);
     }
+
+    @Test
+    void addPrerequisites_multipleInputs_allAdded() {
+        Module module = new Module("CS2113", "Software Engineering");
+        module.addPrerequisites("CS1010", "CS2040C", "EE2026");
+        assertEquals(3, module.getPrerequisites().size(), "All three prerequisites should be added.");
+        assertTrue(module.getPrerequisites().contains("CS2040C"));
+    }
 }
 
