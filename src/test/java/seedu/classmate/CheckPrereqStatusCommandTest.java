@@ -91,5 +91,13 @@ public class CheckPrereqStatusCommandTest {
         assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
                 "Command should handle user's lowercase input by converting it to uppercase");
     }
+
+    @Test
+    void execute_checkPrereqStatusModuleInSpecialisationOnly_doesNotThrow() {
+        ArrayList<String> completed = new ArrayList<>();
+        CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("CS3244", completed);
+        assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
+                "Command should search specialisation if the module is not found in major");
+    }
 }
 
