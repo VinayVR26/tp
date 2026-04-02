@@ -3,6 +3,8 @@ package seedu.classmate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+//@@author VinayVR26
+
 /**
  * Represents an overview of all available CEG specialisations.
  *
@@ -70,3 +72,5 @@ public class SpecialisationOverview {
         return null;
     }
 }
+
+//@@author

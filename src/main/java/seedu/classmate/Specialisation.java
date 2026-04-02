@@ -3,6 +3,8 @@ package seedu.classmate;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+//@@author VinayVR26
+
 /**
  * Represents a CEG specialisation.
  * A Specialisation contains the name of the specialisation, its description,
@@ -180,3 +182,5 @@ public class Specialisation {
         }
     }
 }
+
+//@@author

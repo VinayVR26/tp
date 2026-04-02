@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.HashMap;
 
+//@@author VinayVR26
+
 
 /**
  * Handles loading and validation of module information from .txt file. There are two methods {@code loadCoreModules}
@@ -147,3 +149,5 @@ public class ModulesLoader {
         return specialisationMap;
     }
 }
+
+//@@author
