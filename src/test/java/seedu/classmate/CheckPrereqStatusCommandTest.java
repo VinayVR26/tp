@@ -83,5 +83,13 @@ public class CheckPrereqStatusCommandTest {
         CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("CG2271", completed);
         assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview));
     }
+
+    @Test
+    void execute_lowercaseModuleCode_doesNotThrow() {
+        ArrayList<String> completed = new ArrayList<>();
+        CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("cg2271", completed);
+        assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
+                "Command should handle user's lowercase input by converting it to uppercase");
+    }
 }
 
