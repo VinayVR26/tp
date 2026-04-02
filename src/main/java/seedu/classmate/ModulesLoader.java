@@ -16,6 +16,19 @@ import java.util.HashMap;
 public class ModulesLoader {
     private static final String CORE_MODULES_PATH = "data/core-modules.txt";
     private static final String SPECIALISATION_MODULES_PATH = "data/specialisation-modules.txt";
+    private static final int CORE_MODULES_MODULE_NAME_INDEX = 0;
+    private static final int CORE_MODULES_MODULE_CODE_INDEX = 1;
+    private static final int CORE_MODULES_MODULE_SEMESTER_INDEX = 2;
+    private static final int CORE_MODULES_MODULE_PREREQUISITES_INDEX = 3;
+
+    private static final int SPECIALISATION_MODULES_SPEC_NAME_INDEX = 0;
+    private static final int SPECIALISATION_MODULES_MODULE_TYPE_INDEX = 1;
+    private static final int SPECIALISATION_MODULES_MODULE_NAME_INDEX = 2;
+    private static final int SPECIALISATION_MODULES_MODULE_CODE_INDEX = 3;
+    private static final int SPECIALISATION_MODULES_MODULE_SEMESTER_INDEX = 4;
+    private static final int SPECIALISATION_MODULES_MODULE_PREREQUISITES_INDEX = 5;
+
+
     private static final int NUMBER_OF_TOKENS_IN_CORE_MODULE_FILE_LINE = 4;
     private static final int NUMBER_OF_TOKENS_IN_SPECIALISATION_MODULE_FILE_LINE = 6;
 
@@ -50,10 +63,10 @@ public class ModulesLoader {
             assert tokens.length == NUMBER_OF_TOKENS_IN_CORE_MODULE_FILE_LINE : "The line in " +
                     "core-modules.txt is invalid: " + line;
 
-            String moduleName = tokens[0];
-            String moduleCode = tokens[1];
-            String semester = tokens[2];
-            String prerequisites = tokens[3];
+            String moduleName = tokens[CORE_MODULES_MODULE_NAME_INDEX];
+            String moduleCode = tokens[CORE_MODULES_MODULE_CODE_INDEX];
+            String semester = tokens[CORE_MODULES_MODULE_SEMESTER_INDEX];
+            String prerequisites = tokens[CORE_MODULES_MODULE_PREREQUISITES_INDEX];
 
             Module module = new Module(moduleCode, moduleName);
             module.setSemester(semester);
@@ -103,12 +116,12 @@ public class ModulesLoader {
             assert tokens.length == NUMBER_OF_TOKENS_IN_SPECIALISATION_MODULE_FILE_LINE : "The line in " +
                     "specialisation-modules.txt is invalid: " + line;
 
-            String specialisationName = tokens[0];
-            String moduleType = tokens[1];
-            String moduleName = tokens[2];
-            String moduleCode = tokens[3];
-            String semester = tokens[4];
-            String prerequisites = tokens[5];
+            String specialisationName = tokens[SPECIALISATION_MODULES_SPEC_NAME_INDEX];
+            String moduleType = tokens[SPECIALISATION_MODULES_MODULE_TYPE_INDEX];
+            String moduleName = tokens[SPECIALISATION_MODULES_MODULE_NAME_INDEX];
+            String moduleCode = tokens[SPECIALISATION_MODULES_MODULE_CODE_INDEX];
+            String semester = tokens[SPECIALISATION_MODULES_MODULE_SEMESTER_INDEX];
+            String prerequisites = tokens[SPECIALISATION_MODULES_MODULE_PREREQUISITES_INDEX];
 
             specialisationMap.putIfAbsent(specialisationName, new ArrayList<>());
 
