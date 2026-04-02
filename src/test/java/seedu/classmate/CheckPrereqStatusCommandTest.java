@@ -23,11 +23,12 @@ public class CheckPrereqStatusCommandTest {
     public void setUp() {
         ArrayList<Module> modules = new ArrayList<>();
 
-        Module ma1511 = new Module("MA1511", "Engineering Calculus");
-        Module cs2113 = new Module("CS2113", "Software Engineering & Object-Oriented Programming");
+        Module ma1511 = new Module("MA1511", "Engineering Calculus", 4);
+        Module cs2113 = new Module("CS2113",
+                "Software Engineering & Object-Oriented Programming", 4);
         cs2113.addPrerequisite("CS2040C");
 
-        Module cg2271 = new Module("CG2271", "Real-time Operating System");
+        Module cg2271 = new Module("CG2271", "Real-time Operating System", 4);
         cg2271.addPrerequisite("CS2040C");
 
         modules.add(ma1511);
@@ -39,7 +40,7 @@ public class CheckPrereqStatusCommandTest {
         HashMap<String, ArrayList<Module>> iotMap = new HashMap<>();
         ArrayList<Module> iotModules = new ArrayList<>();
 
-        Module cs3244 = new Module("CS3244", "Machine Learning");
+        Module cs3244 = new Module("CS3244", "Machine Learning", 4);
         cs3244.addPrerequisite("CS1010");
         cs3244.addPrerequisite("ST2334");
         cs3244.addPrerequisite("MA1508E");

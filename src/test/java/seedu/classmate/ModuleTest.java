@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class ModuleTest {
     @Test
     void addPrerequisite_duplicateInput_noChange() {
-        Module module = new Module("CG1111A", "Engineering Principles and Practice I");
+        Module module = new Module("CG1111A", "Engineering Principles and Practice I", 4);
         module.addPrerequisite("CS1010");
         module.addPrerequisite("CS1010");
         assertEquals(1, module.getPrerequisites().size(), "Prerequisite module should not be duplicated.");
@@ -21,26 +21,26 @@ class ModuleTest {
     @Test
     void module_nullName_throwsException() {
         ClassMateException e = assertThrows(ClassMateException.class, () -> {
-            new Module("", "");
+            new Module("", "", 4);
         });
         assertEquals("Module details cannot be empty.", e.getMessage());
     }
 
     @Test
     void toString_validModule_returnsCorrectString() {
-        Module module = new Module("CS2113", "Software Engineering & OOP");
+        Module module = new Module("CS2113", "Software Engineering & OOP", 4);
         assertEquals("CS2113 Software Engineering & OOP", module.toString());
     }
 
     @Test
     void toStringPrerequisites_noPrerequisites_returnsNoPrereqMessage() {
-        Module module = new Module("CS1010", "Programming Methodology");
+        Module module = new Module("CS1010", "Programming Methodology", 4);
         assertEquals("CS1010 has no prerequisites.", module.toStringPrerequisites());
     }
 
     @Test
     void addPrerequisite_validInput_added() {
-        Module module = new Module("CS2113", "Software Engineering & OOP");
+        Module module = new Module("CS2113", "Software Engineering & OOP", 4);
         module.addPrerequisite("CS2040C");
         assertEquals(1, module.getPrerequisites().size());
     }
@@ -48,20 +48,20 @@ class ModuleTest {
 
     @Test
     void getModuleCode_validModule_returnsCode() {
-        Module module = new Module("CS2113", "Software Engineering & OOP");
+        Module module = new Module("CS2113", "Software Engineering & OOP", 4);
         assertEquals("CS2113", module.getModuleCode());
     }
 
     @Test
     void printInfo_noPrerequisites_showsCanTakeYes() {
-        Module module = new Module("CS1010", "Programming Methodology");
+        Module module = new Module("CS1010", "Programming Methodology", 4);
         String info = module.printInfo();
         assertTrue(info.contains("Can take: YES"));
     }
 
     @Test
     void printInfo_withPrerequisites_showsCanTakeNo() {
-        Module module = new Module("CS2113", "Software Engineering & OOP");
+        Module module = new Module("CS2113", "Software Engineering & OOP", 4);
         module.addPrerequisite("CS2040C");
         String info = module.printInfo();
         assertTrue(info.contains("Can take: NO"));
@@ -69,14 +69,14 @@ class ModuleTest {
 
     @Test
     void checkAvailability_bothSemesters_returnsCorrectMessage() {
-        Module module = new Module("CS1010", "Programming Methodology");
+        Module module = new Module("CS1010", "Programming Methodology", 4);
         String result = module.checkAvailability("sem1");
         assertEquals("CS1010 is available in both Semester 1 and Semester 2.", result);
     }
 
     @Test
     void checkAvailability_sem2Only_returnsYes() {
-        Module module = new Module("CG2023", "Signals & Systems");
+        Module module = new Module("CG2023", "Signals & Systems",4);
         module.setSemester("2");
         String result = module.checkAvailability("sem2");
         assertEquals("Yes, CG2023 is only available in Semester 2.", result);
@@ -84,7 +84,7 @@ class ModuleTest {
 
     @Test
     void checkAvailability_wrongSem_returnsNo() {
-        Module module = new Module("CG2027", "Transistor-level Digital Circuit");
+        Module module = new Module("CG2027", "Transistor-level Digital Circuit", 4);
         module.setSemester("1");
         String result = module.checkAvailability("sem2");
         assertEquals("No, CG2027 is not available in sem2.", result);
@@ -92,15 +92,17 @@ class ModuleTest {
 
     @Test
     void addPrerequisites_multipleInputs_allAdded() {
-        Module module = new Module("CS2113", "Software Engineering");
-        module.addPrerequisites("CS1010", "CS2040C", "EE2026");
+        Module module = new Module("CS2113", "Software Engineering", 4);
+        module.addPrerequisite("CS1010");
+        module.addPrerequisite("CS2040C");
+        module.addPrerequisite("EE2026");
         assertEquals(3, module.getPrerequisites().size(), "All three prerequisites should be added.");
         assertTrue(module.getPrerequisites().contains("CS2040C"));
     }
 
     @Test
     void checkAvailability_sem1Only_returnsYes() {
-        Module module = new Module("EE2026", "Digital Design");
+        Module module = new Module("EE2026", "Digital Design", 4);
         module.setSemester("1");
         String result = module.checkAvailability("sem1");
         assertEquals("Yes, EE2026 is only available in Semester 1.", result);
@@ -108,14 +110,14 @@ class ModuleTest {
 
     @Test
     void checkAvailability_invalidInput_returnsErrorMessage() {
-        Module module = new Module("CS2113", "Software Engineering");
+        Module module = new Module("CS2113", "Software Engineering", 4);
         String result = module.checkAvailability("summer");
         assertEquals("Invalid semester. Please enter sem1 or sem2.", result);
     }
 
     @Test
     void printInfo_withCompletedPrerequisites_showsCanTakeYes() {
-        Module module = new Module("CS2113", "Software Engineering");
+        Module module = new Module("CS2113", "Software Engineering", 4);
         module.addPrerequisite("CS2040C");
 
         java.util.ArrayList<String> completed = new java.util.ArrayList<>();
@@ -127,8 +129,9 @@ class ModuleTest {
 
     @Test
     void printInfo_missingSomePrerequisites_showsCanTakeNo() {
-        Module module = new Module("CS2113", "Software Engineering");
-        module.addPrerequisites("CS1010", "CS2040C");
+        Module module = new Module("CS2113", "Software Engineering", 4);
+        module.addPrerequisite("CS1010");
+        module.addPrerequisite("CS2040C");
 
         java.util.ArrayList<String> completed = new java.util.ArrayList<>();
         completed.add("CS1010");

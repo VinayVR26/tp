@@ -22,8 +22,8 @@ public class QueryModuleAvailabilityCommandTest {
     @BeforeEach
     public void setUp() {
         ArrayList<Module> modules = new ArrayList<>();
-        Module cs2113 = new Module("CS2113", "Software Engineering & OOP");
-        Module cg2023 = new Module("CG2023", "Signals & Systems");
+        Module cs2113 = new Module("CS2113", "Software Engineering & OOP", 4);
+        Module cg2023 = new Module("CG2023", "Signals & Systems", 4);
         cg2023.setSemester("2");
         modules.add(cs2113);
         modules.add(cg2023);

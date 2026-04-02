@@ -23,7 +23,7 @@ public class PrintModuleInfoCommandTest {
     @BeforeEach
     public void setUp() {
         ArrayList<Module> modules = new ArrayList<>();
-        Module cs2113 = new Module("CS2113", "Software Engineering & OOP");
+        Module cs2113 = new Module("CS2113", "Software Engineering & OOP", 4);
         cs2113.addPrerequisite("CS2040C");
         modules.add(cs2113);
         major = new Major(modules);
@@ -31,7 +31,7 @@ public class PrintModuleInfoCommandTest {
         HashMap<String, ArrayList<Module>> roboticsMap = new HashMap<>();
         ArrayList<Module> roboticsModules = new ArrayList<>();
 
-        Module cs3244 = new Module("EE4705", "Human-Robot Interaction");
+        Module cs3244 = new Module("EE4705", "Human-Robot Interaction", 4);
         cs3244.addPrerequisite("EE2211");
         cs3244.addPrerequisite("EE3331C");
 

@@ -25,7 +25,7 @@ public class MarkDoneCommandTest {
     @BeforeEach
     public void setUp() {
         ArrayList<Module> modules = new ArrayList<>();
-        Module cs2113 = new Module("CS2113", "Software Engineering & OOP");
+        Module cs2113 = new Module("CS2113", "Software Engineering & OOP", 4);
         modules.add(cs2113);
         major = new Major(modules);
         specOverview = new SpecialisationOverview(new HashMap<>());

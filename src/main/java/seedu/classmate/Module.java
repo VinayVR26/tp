@@ -51,12 +51,6 @@ public class Module {
         }
     }
 
-    public void addPrerequisites(String... prereqCodes) {
-        for (String prereqCode : prereqCodes) {
-            addPrerequisite(prereqCode);
-        }
-    }
-
     /**
      * Sets the semester(s) this module is offered.
      *
