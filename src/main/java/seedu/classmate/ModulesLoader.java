@@ -18,19 +18,21 @@ public class ModulesLoader {
     private static final String SPECIALISATION_MODULES_PATH = "data/specialisation-modules.txt";
     private static final int CORE_MODULES_MODULE_NAME_INDEX = 0;
     private static final int CORE_MODULES_MODULE_CODE_INDEX = 1;
-    private static final int CORE_MODULES_MODULE_SEMESTER_INDEX = 2;
-    private static final int CORE_MODULES_MODULE_PREREQUISITES_INDEX = 3;
+    private static final int CORE_MODULES_MODULE_UNIT_INDEX = 2;
+    private static final int CORE_MODULES_MODULE_SEMESTER_INDEX = 3;
+    private static final int CORE_MODULES_MODULE_PREREQUISITES_INDEX = 4;
 
     private static final int SPECIALISATION_MODULES_SPEC_NAME_INDEX = 0;
     private static final int SPECIALISATION_MODULES_MODULE_TYPE_INDEX = 1;
     private static final int SPECIALISATION_MODULES_MODULE_NAME_INDEX = 2;
     private static final int SPECIALISATION_MODULES_MODULE_CODE_INDEX = 3;
-    private static final int SPECIALISATION_MODULES_MODULE_SEMESTER_INDEX = 4;
-    private static final int SPECIALISATION_MODULES_MODULE_PREREQUISITES_INDEX = 5;
+    private static final int SPECIALISATION_MODULES_MODULE_UNIT_INDEX = 4;
+    private static final int SPECIALISATION_MODULES_MODULE_SEMESTER_INDEX = 5;
+    private static final int SPECIALISATION_MODULES_MODULE_PREREQUISITES_INDEX = 6;
 
 
-    private static final int NUMBER_OF_TOKENS_IN_CORE_MODULE_FILE_LINE = 4;
-    private static final int NUMBER_OF_TOKENS_IN_SPECIALISATION_MODULE_FILE_LINE = 6;
+    private static final int NUMBER_OF_TOKENS_IN_CORE_MODULE_FILE_LINE = 5;
+    private static final int NUMBER_OF_TOKENS_IN_SPECIALISATION_MODULE_FILE_LINE = 7;
 
 
     /**
@@ -65,10 +67,11 @@ public class ModulesLoader {
 
             String moduleName = tokens[CORE_MODULES_MODULE_NAME_INDEX];
             String moduleCode = tokens[CORE_MODULES_MODULE_CODE_INDEX];
+            String moduleUnit = tokens[CORE_MODULES_MODULE_UNIT_INDEX];
             String semester = tokens[CORE_MODULES_MODULE_SEMESTER_INDEX];
             String prerequisites = tokens[CORE_MODULES_MODULE_PREREQUISITES_INDEX];
 
-            Module module = new Module(moduleCode, moduleName);
+            Module module = new Module(moduleCode, moduleName, moduleUnit);
             module.setSemester(semester);
 
             if (!prerequisites.equals("None")) {
@@ -120,12 +123,13 @@ public class ModulesLoader {
             String moduleType = tokens[SPECIALISATION_MODULES_MODULE_TYPE_INDEX];
             String moduleName = tokens[SPECIALISATION_MODULES_MODULE_NAME_INDEX];
             String moduleCode = tokens[SPECIALISATION_MODULES_MODULE_CODE_INDEX];
+            String moduleUnit = tokens[SPECIALISATION_MODULES_MODULE_UNIT_INDEX];
             String semester = tokens[SPECIALISATION_MODULES_MODULE_SEMESTER_INDEX];
             String prerequisites = tokens[SPECIALISATION_MODULES_MODULE_PREREQUISITES_INDEX];
 
             specialisationMap.putIfAbsent(specialisationName, new ArrayList<>());
 
-            Module module = new Module(moduleCode, moduleName);
+            Module module = new Module(moduleCode, moduleName, moduleUnit);
             module.setSemester(semester);
             module.setModuleType(moduleType);
 

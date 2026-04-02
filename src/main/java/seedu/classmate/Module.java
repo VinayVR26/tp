@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class Module {
     private String moduleCode;
     private String moduleName;
+    private String moduleUnit;
     private String moduleType;
     private ArrayList<String> prerequisites;
-    private int units;
     private String semester;
 
     /**
@@ -21,9 +21,10 @@ public class Module {
      * @param moduleName The title of the module.
      * @throws ClassMateException If the module code or name is empty.
      */
-    public Module(String moduleCode, String moduleName) {
+    public Module(String moduleCode, String moduleName, String moduleUnit) {
         assert moduleCode != null : "Module code should not be null";
         assert moduleName != null : "Module name should not be null";
+        assert moduleUnit != null : "Module unit should not be null";
         if (moduleCode.trim().isEmpty() || moduleName.trim().isEmpty()) {
             throw new ClassMateException("Module details cannot be empty.");
         }
@@ -31,7 +32,7 @@ public class Module {
         this.moduleName = moduleName;
         this.moduleType = "Core";
         this.prerequisites = new ArrayList<>();
-        this.units = 4;
+        this.moduleUnit = moduleUnit;
         this.semester = "1/2";
     }
 
@@ -54,15 +55,6 @@ public class Module {
         for (String prereqCode : prereqCodes) {
             addPrerequisite(prereqCode);
         }
-    }
-
-    /**
-     * Sets the number of units for this module.
-     *
-     * @param units The number of academic units.
-     */
-    public void setUnits(int units) {
-        this.units = units;
     }
 
     /**
@@ -119,7 +111,7 @@ public class Module {
         String canTake = (prerequisites.isEmpty() || allPrereqsDone) ? "YES" : "NO";
         return " Code: " + moduleCode + "\n" +
                " Name: " + moduleName + "\n" +
-               " Units: " + units + "\n" +
+               " Units: " + moduleUnit + "\n" +
                " Semester: " + semester + "\n" +
                " Prerequisites: " + prereqStr + "\n" +
                " Can take: " + canTake + "\n";

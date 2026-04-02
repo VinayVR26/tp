@@ -166,7 +166,7 @@ public class Specialisation {
 
         case "Robotics":
             this.specialisationDescription = roboticsDescription;
-            this.electiveRequirements = "12 Units from electives AND a Capstone (8 Units) in Robotics OR, 20 Units " +
+            this.electiveRequirements = "12 Units from electives AND EE4002D/R (8 Units) in Robotics OR, 20 Units " +
                     "from the list below";
             break;
 
