@@ -83,5 +83,29 @@ public class CheckPrereqStatusCommandTest {
         CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("CG2271", completed);
         assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview));
     }
+
+    @Test
+    void execute_lowercaseModuleCode_doesNotThrow() {
+        ArrayList<String> completed = new ArrayList<>();
+        CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("cg2271", completed);
+        assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
+                "Command should handle user's lowercase input by converting it to uppercase");
+    }
+
+    @Test
+    void execute_checkPrereqStatusModuleInSpecialisationOnly_doesNotThrow() {
+        ArrayList<String> completed = new ArrayList<>();
+        CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("CS3244", completed);
+        assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
+                "Command should search specialisation if the module is not found in major");
+    }
+
+    @Test
+    void execute_whitespaceModuleCode_doesNotThrow() {
+        ArrayList<String> completed = new ArrayList<>();
+        CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("  CG2028 ", completed);
+        assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
+                "Command should trim whitespace in the user input and still detect the module code");
+    }
 }
 
