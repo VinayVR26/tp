@@ -103,6 +103,20 @@ public class ParserTest {
     }
 
     @Test
+    public void parse_ValidCommandWithLeadingAndTrailingWhitespace_doesNotThrowException() {
+        String input = "   viewDone ";
+        Command command = Parser.parse(input, completedModules, storage, userProfile);
+        assertInstanceOf(ViewDoneCommand.class, command);
+    }
+
+    @Test
+    public void parse_ValidCommandWithWhitespaceInBetween_doesNotThrowException_throwsException() {
+        String input = "markDone     CG2271";
+        Command command = Parser.parse(input, completedModules, storage, userProfile);
+        assertInstanceOf(MarkDoneCommand.class, command);
+    }
+
+    @Test
     public void testViewGradeReqsCommand() {
         Command command = Parser.parse("viewGradReqs", completedModules, storage, userProfile);
         assertInstanceOf(ViewGradReqsCommand.class, command);
