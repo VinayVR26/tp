@@ -99,5 +99,13 @@ public class CheckPrereqStatusCommandTest {
         assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
                 "Command should search specialisation if the module is not found in major");
     }
+
+    @Test
+    void execute_whitespaceModuleCode_doesNotThrow() {
+        ArrayList<String> completed = new ArrayList<>();
+        CheckPrereqStatusCommand cmd = new CheckPrereqStatusCommand("  CG2028 ", completed);
+        assertDoesNotThrow(() -> cmd.executeCommand(major, ui, specOverview),
+                "Command should trim whitespace in the user input and still detect the module code");
+    }
 }
 
