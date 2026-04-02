@@ -38,6 +38,7 @@ CS2113 Software Engineering & Object-Oriented Programming
 CS2107 Introduction to Information Security
 CG2271 Real-time Operating System
 CG3201 Machine Learning and Deep Learning
+EE2211 Introduction to Machine Learning
 CG3207 Computer Architecture
 EE4204 Computer Networks
 Goodbye! Happy course planning!

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 /**
  * Contains unit tests for the Module class.
  * Tests for empty module codes and whether all modules are unique.
@@ -139,5 +141,54 @@ class ModuleTest {
 
         String info = module.printInfo(completed);
         assertTrue(info.contains("Can take: NO"), "Should be NO if only some prerequisites are completed.");
+    }
+
+    @Test
+    void printPrereqTree_noPrerequisites_returnsModuleOnly() {
+        Module module = new Module("CS1010", "Programming Methodology", 4);
+        Major major = new Major(new ArrayList<>());
+
+        String tree = module.printPrereqTree(major);
+
+        assertTrue(tree.contains("CS1010"));
+    }
+
+    @Test
+    void printPrereqTree_withPrerequisites_printsTree() {
+        Module cs1010 = new Module("CS1010", "Programming Methodology", 4);
+        Module cs2040 = new Module("CS2040", "Data Structures", 4);
+        Module cs2113 = new Module("CS2113", "Software Engineering & OOP", 4);
+
+        cs2040.addPrerequisite("CS1010");
+        cs2113.addPrerequisite("CS2040");
+
+        ArrayList<Module> modules = new ArrayList<>();
+        modules.add(cs1010);
+        modules.add(cs2040);
+        modules.add(cs2113);
+
+        Major major = new Major(modules);
+
+        String tree = cs2113.printPrereqTree(major);
+
+        assertTrue(tree.contains("CS2113"));
+        assertTrue(tree.contains("CS2040"));
+        assertTrue(tree.contains("CS1010"));
+    }
+
+    @Test
+    void toStringPrerequisites_withPrerequisites_returnsFormattedList() {
+        Module module = new Module("CS2113", "Software Engineering & OOP", 4);
+        module.addPrerequisite("CS2040C");
+        module.addPrerequisite("CS2103T");
+
+        assertEquals("Prerequisites for CS2113: CS2040C, CS2103T",
+                module.toStringPrerequisites());
+    }
+
+    @Test
+    void getModuleName_validModule_returnsName() {
+        Module module = new Module("CS2113", "Software Engineering & OOP", 4);
+        assertEquals("Software Engineering & OOP", module.getModuleName());
     }
 }
