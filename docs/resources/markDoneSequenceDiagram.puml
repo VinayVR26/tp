@@ -1,0 +1,40 @@
+@startuml
+actor User
+participant ClassMate
+participant Parser
+participant CommandManager
+participant MarkDoneCommand
+participant Major
+participant Storage
+
+User -> ClassMate : markDone CS2040C
+ClassMate -> Parser : parse(input, completedModules, storage, userProfile)
+activate Parser
+Parser -> CommandManager : createCommand("markDone", "CS2040C", ...)
+activate CommandManager
+CommandManager --> Parser : MarkDoneCommand
+deactivate CommandManager
+Parser --> ClassMate : MarkDoneCommand
+deactivate Parser
+
+ClassMate -> MarkDoneCommand : executeCommand(major, ui, specOverview)
+activate MarkDoneCommand
+MarkDoneCommand -> Major : findModule("CS2040C")
+activate Major
+Major --> MarkDoneCommand : module
+deactivate Major
+
+alt module not found
+    MarkDoneCommand --> ClassMate : print "Module not found"
+else already marked done
+    MarkDoneCommand --> ClassMate : print "Already marked as done"
+else valid module
+    MarkDoneCommand -> MarkDoneCommand : completedModules.add("CS2040C")
+    MarkDoneCommand -> Storage : save(completedModules)
+    activate Storage
+    Storage --> MarkDoneCommand : saved
+    deactivate Storage
+    MarkDoneCommand --> ClassMate : print "Successfully marked as done"
+end
+deactivate MarkDoneCommand
+@enduml

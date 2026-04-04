@@ -208,6 +208,14 @@ The sequence diagram below illustrates how the components interact when `checkPr
 
 The `markDone` feature allows users to mark a module as completed. The completed module is added to the `completedModules` list and saved to disk via `Storage` so it persists across sessions.
 
+The sequence diagram below illustrates how the components interact when `markDone CS2040C` is executed:
+
+![markDone Sequence Diagram](resources/markDoneSequenceDiagram.png)
+
+**Design Considerations:**
+- If the module is already in `completedModules`, the command prints a message and returns early to avoid duplicates.
+- `Storage.save()` is called immediately after adding the module to ensure persistence even if the app crashes.
+
 ### **Querying Module Availability**
 <Uses `QueryModuleAvailabilityCommand`, `Module`>
 
