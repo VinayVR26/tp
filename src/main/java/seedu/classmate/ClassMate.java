@@ -4,6 +4,8 @@ import seedu.classmate.commands.Command;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class ClassMate {
@@ -56,4 +58,16 @@ public class ClassMate {
         logger.info("ClassMate application exited.");
     }
 
+    /**
+     * Configures the application's logging settings.
+     * For v2.1, this silences console logs to keep the CLI clean for the user.
+     * To edit method to enable logging when needed
+     */
+    private static void setupLogger() {
+        LogManager.getLogManager().reset();
+        Logger globalLogger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+        // Change to Level.ALL if logging is needed for debugging
+        globalLogger.setLevel(Level.OFF);
+    }
 }
