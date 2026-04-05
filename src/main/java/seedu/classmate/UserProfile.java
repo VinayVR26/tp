@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserProfile {
+    private static final int MAX_SPECIALISATIONS = 2;
     private static final String MODULES_PATH = "data/completedModules.txt";
     private static final String SPEC_PATH = "data/specialization.txt";
 
@@ -59,7 +60,14 @@ public class UserProfile {
             writer.close();
         } catch (IOException e) {
             System.out.println("Error saving specialization.");
+    public void addSpecialisation(String specName) throws ClassMateException {
+        if (userSpecialisations.size() >= MAX_SPECIALISATIONS) {
+            throw new ClassMateException("You can only select up to " + MAX_SPECIALISATIONS + " specialisations.");
         }
+        if (userSpecialisations.contains(specName)) {
+            throw new ClassMateException("You have already selected this specialisation.");
+        }
+        userSpecialisations.add(specName);
     }
 
     public ArrayList<String> getCompletedModules() {
