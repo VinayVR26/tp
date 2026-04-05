@@ -1,0 +1,46 @@
+@startuml
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+actor User
+participant ":ClassMate" as ClassMate
+participant ":Parser" as Parser
+participant "c:SetSpecialisationCommand" as SetSpecialisationCommand
+participant ":UserProfile" as UserProfile
+participant ":Storage" as Storage
+
+User -> ClassMate : "setSpecialisation Robotics"
+activate ClassMate
+
+ClassMate -> Parser : parse("setSpecialisation Robotics")
+activate Parser
+create SetSpecialisationCommand
+Parser -> SetSpecialisationCommand : new("Robotics", userProfile, storage)
+Parser --> ClassMate : c
+deactivate Parser
+
+ClassMate -> SetSpecialisationCommand : executeCommand(...)
+activate SetSpecialisationCommand
+
+SetSpecialisationCommand -> UserProfile : addSpecialisation("Robotics")
+activate UserProfile
+note right: Validates < 2 total and not a duplicate
+UserProfile --> SetSpecialisationCommand
+deactivate UserProfile
+
+SetSpecialisationCommand -> Storage : saveUserProfile(userProfile)
+activate Storage
+Storage --> SetSpecialisationCommand
+deactivate Storage
+
+SetSpecialisationCommand -> ui : showMessage("Success!")
+activate ui
+ui --> SetSpecialisationCommand
+deactivate ui
+
+SetSpecialisationCommand --> ClassMate
+deactivate SetSpecialisationCommand
+
+ClassMate --> User
+deactivate ClassMate
+@enduml
