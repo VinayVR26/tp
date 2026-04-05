@@ -180,4 +180,41 @@ public class Ui {
         }
         System.out.println();
     }
+
+    /**
+     * Prints the progress for a single specialisation, handling the elective counting logic.
+     */
+    public void showSpecialisationProgress(Specialisation spec, ArrayList<Module> remainingCore,
+                                           ArrayList<Module> remainingElectives, int completedElectivesCount) {
+        printLine();
+        System.out.println("SPECIALISATION: [" + spec.getSpecialisationName().toUpperCase() + "]");
+        System.out.println();
+
+        // Show progress regarding core spec modules
+        System.out.println("Core Modules Remaining:");
+        if (remainingCore.isEmpty()) {
+            System.out.println("  - All Specialisation Core requirements cleared!");
+        } else {
+            for (Module m : remainingCore) {
+                System.out.println("  - " + m.getModuleCode() + " : " + m.getModuleName());
+            }
+        }
+        System.out.println();
+
+        // Show progress regarding elective spec modules
+        // Logic: Show completed electives and list of incomplete options user can consider
+        System.out.println("Elective Modules (Completed: " + completedElectivesCount + ")");
+        System.out.println("Requirement: " + spec.getElectiveRequirements());
+        System.out.println("Remaining Options:");
+        if (remainingElectives.isEmpty()) {
+            System.out.println("  - No more electives available to take.");
+        } else {
+            for (Module m : remainingElectives) {
+                System.out.println("  - " + m.getModuleCode() + " : " + m.getModuleName());
+            }
+        }
+        printLine();
+    }
+
+    // @@author
 }

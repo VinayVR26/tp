@@ -2,6 +2,7 @@ package seedu.classmate.commands;
 
 import seedu.classmate.Major;
 import seedu.classmate.Module;
+import seedu.classmate.Specialisation;
 import seedu.classmate.SpecialisationOverview;
 import seedu.classmate.Ui;
 import seedu.classmate.UserProfile;
@@ -70,19 +71,54 @@ public class CheckProfileCommand extends Command {
         // first check if spec is empty
         // else, show specs and modules yet to complete
         ArrayList<String> userSpecialisations = userProfile.getUserSpecialisations();
-//        System.out.println("Specialisation: " + userSpecialisations);
-//
-//        System.out.println("Completed Modules:");
-//        if (completedModules.isEmpty()) {
-//            System.out.println("  - No modules marked as completed yet.");
-//        } else {
-//            for (String moduleCode : completedModules) {
-//                System.out.println("  [DONE] " + moduleCode);
-//            }
-//        }
-//
-//        Ui.printLine();
-//        System.out.println("Keep up the great work!");
+
+        if (userSpecialisations.isEmpty()) {
+            System.out.println("No specialisations selected yet.");
+            Ui.printLine();
+            return;
+        }
+
+        for (String specName : userSpecialisations) {
+            // Find the actual Specialisation object based on the user's saved string
+            Specialisation spec = specialisationOverview.getSpecialisationByName(specName);
+
+            if (spec != null) {
+                calculateAndShowSpecProgress(spec, completedModules, ui);
+            } else {
+                logger.warning("Could not find specialisation data for: " + specName);
+            }
+        }
+
+        System.out.println("Keep up the great work!");
+        Ui.printLine();
+    }
+
+    /**
+     * Helper method to calculate the progress for a specific specialisation.
+     */
+    private void calculateAndShowSpecProgress(Specialisation spec, ArrayList<String> completedCodes, Ui ui) {
+        // Calculate remaining Core modules
+        ArrayList<Module> remainingSpecCore = new ArrayList<>();
+        for (Module m : spec.getSpecialisationCoreModules()) {
+            if (!completedCodes.contains(m.getModuleCode())) {
+                remainingSpecCore.add(m);
+            }
+        }
+
+        // Calculate Electives by counting no. of completed mods and listing remaining mods
+        ArrayList<Module> remainingElectives = new ArrayList<>();
+        int completedElectivesCount = 0;
+
+        for (Module m : spec.getSpecialisationElectiveModules()) {
+            if (completedCodes.contains(m.getModuleCode())) {
+                completedElectivesCount++;
+            } else {
+                remainingElectives.add(m);
+            }
+        }
+
+        // Pass calculated data to Ui to format and print
+        ui.showSpecialisationProgress(spec, remainingSpecCore, remainingElectives, completedElectivesCount);
     }
 
     // @@author
