@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class CommandManager {
 
     public static Command createCommand(String commandWord, String arguments,
-            ArrayList<String> completedModules, Storage storage, UserProfile userProfile) {
+                                        Storage storage, UserProfile userProfile) {
         switch (commandWord) {
         case "help":
             return new HelpCommand();
@@ -35,7 +35,7 @@ public class CommandManager {
             return new PrereqCommand(arguments);
 
         case "viewmoduleinfo":
-            return new PrintModuleInfoCommand(arguments, completedModules);
+            return new PrintModuleInfoCommand(arguments, userProfile.getUserCompletedModules());
 
         case "querymoduleavailability":
             return new QueryModuleAvailabilityCommand(arguments);
@@ -50,10 +50,10 @@ public class CommandManager {
             return new MarkDoneCommand(arguments, userProfile, storage);
 
         case "viewdone":
-            return new ViewDoneCommand(completedModules);
+            return new ViewDoneCommand(userProfile.getUserCompletedModules());
 
         case "checkprereqstatus":
-            return new CheckPrereqStatusCommand(arguments, completedModules);
+            return new CheckPrereqStatusCommand(arguments, userProfile.getUserCompletedModules());
 
         case "setspecialisation":
             return new SetSpecialisationCommand(arguments, userProfile, storage);

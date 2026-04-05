@@ -40,15 +40,13 @@ public class CommandManagerTest {
     // @@author VinayVR26
     @Test
     public void createHelpCommand() {
-        Command command = CommandManager.createCommand("help", "", completedModules, storage,
-                userProfile);
+        Command command = CommandManager.createCommand("help", "", storage, userProfile);
         assertInstanceOf(HelpCommand.class, command);
     }
 
     @Test
     public void createByeCommand() {
-        Command command = CommandManager.createCommand("bye", "", completedModules, storage,
-                userProfile);
+        Command command = CommandManager.createCommand("bye", "", storage, userProfile);
         assertInstanceOf(ByeCommand.class, command);
     }
     // @@author
@@ -57,50 +55,49 @@ public class CommandManagerTest {
     @Test
     public void createViewGradReqsCommand() {
         Command command = CommandManager.createCommand(
-                "viewgradreqs", "", completedModules, storage, userProfile);
+                "viewgradreqs", "", storage, userProfile);
         assertInstanceOf(ViewGradReqsCommand.class, command);
     }
 
     @Test
     public void createViewModuleInfoCommand() {
         Command command = CommandManager.createCommand(
-                "viewmoduleinfo", "CS2113", completedModules, storage, userProfile);
+                "viewmoduleinfo", "CS2113", storage, userProfile);
         assertInstanceOf(PrintModuleInfoCommand.class, command);
     }
 
     @Test
     public void createQueryModuleAvailabilityCommand() {
         Command command = CommandManager.createCommand(
-                "querymoduleavailability", "CS2113 sem1", completedModules, storage,
-                userProfile);
+                "querymoduleavailability", "CS2113 sem1", storage, userProfile);
         assertInstanceOf(QueryModuleAvailabilityCommand.class, command);
     }
 
     @Test
     public void createViewSpecialisationsCommand() {
         Command command = CommandManager.createCommand(
-                "viewspecialisations", "", completedModules, storage, userProfile);
+                "viewspecialisations", "", storage, userProfile);
         assertInstanceOf(ViewSpecialisationsCommand.class, command);
     }
 
     @Test
     public void createSpecialisationInfoCommand() {
         Command command = CommandManager.createCommand(
-                "viewspecialisationinfo", "1", completedModules, storage, userProfile);
+                "viewspecialisationinfo", "1", storage, userProfile);
         assertInstanceOf(SpecialisationInfoCommand.class, command);
     }
 
     @Test
     public void createMarkDoneCommand() {
         Command command = CommandManager.createCommand(
-                "markdone", "CS2113", completedModules, storage, userProfile);
+                "markdone", "CS2113", storage, userProfile);
         assertInstanceOf(MarkDoneCommand.class, command);
     }
 
     @Test
     public void createViewDoneCommand() {
         Command command = CommandManager.createCommand(
-                "viewdone", "", completedModules, storage, userProfile);
+                "viewdone", "", storage, userProfile);
         assertInstanceOf(ViewDoneCommand.class, command);
     }
     // @@author
@@ -109,7 +106,7 @@ public class CommandManagerTest {
     @Test
     public void createCheckProfileCommand() {
         Command command = CommandManager.createCommand(
-                "checkprofile", "", completedModules, storage, userProfile);
+                "checkprofile", "", storage, userProfile);
         assertInstanceOf(CheckProfileCommand.class, command);
     }
     // @@author
@@ -117,21 +114,21 @@ public class CommandManagerTest {
     @Test
     public void createPrereqCommand() {
         Command command = CommandManager.createCommand(
-                "viewprereqs", "CS2113",  completedModules, storage, userProfile);
+                "viewprereqs", "CS2113", storage, userProfile);
         assertInstanceOf(PrereqCommand.class, command);
     }
 
     @Test
     public void checkPrereqStatusCommand() {
         Command command = CommandManager.createCommand(
-                "checkprereqstatus", "CS2113", completedModules, storage, userProfile);
+                "checkprereqstatus", "CS2113", storage, userProfile);
         assertInstanceOf(CheckPrereqStatusCommand.class, command);
     }
 
     @Test
     public void createSetSpecialisationCommand() {
         Command command = CommandManager.createCommand(
-                "setspecialisation", "Robotics", completedModules, storage, userProfile);
+                "setspecialisation", "Robotics", storage, userProfile);
         assertInstanceOf(SetSpecialisationCommand.class, command);
     }
 
@@ -140,7 +137,7 @@ public class CommandManagerTest {
         ClassMateException exception = assertThrows(
                 ClassMateException.class,
                 () -> CommandManager.createCommand(
-                        "unknownCommand", "", completedModules, storage, userProfile)
+                        "unknownCommand", "", storage, userProfile)
         );
         assertEquals("Unknown command. Enter 'help' for available commands.", exception.getMessage());
     }
