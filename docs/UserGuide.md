@@ -50,6 +50,11 @@ Shows details for a specific module, such as title, academic units, prerequisite
 
 Format: `viewModuleInfo MODULE_CODE`
 
+* `MODULE_CODE` must be a valid module code. If the module code is not found, ClassMate will display an error message.
+* `MODULE_CODE` must be non-empty, else ClassMate will prompt the user to provide one.
+* `MODULE_CODE` is case-insensitive.
+* The command works for both major modules and specialisation modules.
+
 Examples:
 * `viewModuleInfo CS2113`
 * `viewModuleInfo CG2023`
@@ -70,6 +75,11 @@ Checks if a module is available in Semester 1 or Semester 2.
 
 Format: `queryModuleAvailability MODULE_CODE sem1/sem2`
 
+* `MODULE_CODE` must be a valid module code. If the module code is not found, ClassMate will display an error message.
+* If the module code or semester is missing, ClassMate will display the correct format.
+* `MODULE_CODE` is case-insensitive.
+* Use `sem1` or `sem2` only.
+
 Examples:
 * `queryModuleAvailability CG2023 sem2`
 * `queryModuleAvailability CS2113 sem1`
@@ -84,6 +94,12 @@ Yes, CG2023 is only available in Semester 2.
 Given a module code, view the prerequisite tree.
 
 Format: `viewPrereqs MODULE_CODE`
+
+* If the module code is missing, ClassMate will prompt the user to provide one.
+* If the module is not found, ClassMate will display an error message.
+* `MODULE_CODE` is case-insensitive.
+* Shows the module’s prerequisite chain in tree form.
+If the module has no prerequisites, the module will appear as the root of the prerequisite tree.
 
 Examples:
 * `viewPrereqs CG2028`
@@ -102,6 +118,9 @@ EE4204
 Checks which prerequisites for a module you have already completed and which are still outstanding.
 
 Format: `checkPrereqStatus MODULE_CODE`
+
+* `MODULE_CODE` is case-insensitive.
+* The result is based on the user's saved academic profile.
 
 Examples:
 * `checkPrereqStatus CS2113`
@@ -163,10 +182,15 @@ Provides a description of the specialisation, the elective modules fulfillment c
 
 Format: `viewSpecialisationInfo SPECIALISATION_INDEX`
 
+* User can use `viewSpecialisations` to find the available specialisations and their indexes.
+
 Examples:
 * `viewSpecialisationInfo 2`
 * `viewSpecialisationInfo 5`
 
+Error cases:
+* If the index is missing, ClassMate will prompt the user to provide one.
+* If the index is not an integer from 1 to 6, ClassMate will display an error message.
 
 #### Setting a specialisation: `setSpecialisation`
 Adds a specialisation track to your profile. You can select up to **two** specialisations.
