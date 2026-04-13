@@ -47,7 +47,7 @@ User      ClassMate    Parser   CommandManager  PrereqCommand  Major  SpecOvw
 8. The final prerequisite tree is returned and displayed to the user through the UI.
 
 #### Design considerations
-- The command pattern is used to ensure user action is encapsulated in its own command class, keeping command-specific logic separate from input parsing and applicationc ontrol flow.
+- The command pattern is used to ensure user action is encapsulated in its own command class, keeping command-specific logic separate from input parsing and application control flow.
 - The UI is responsible only for presentation. It does not participate in the generation of the prerequisite tree.
 - The module lookup is separated from output formatting, making the feature easier to maintain and extend.
 - If the requested module cannot be found, the command should report an error instead of generating the prerequisite tree.

@@ -190,7 +190,7 @@ Examples:
 
 Error cases:
 * If the index is missing, ClassMate will prompt the user to provide one.
-* If the index is not an integer from 1 to 6, ClassMate will display an error message.
+* If the index is not an integer from 1 to 5, ClassMate will display an error message.
 
 #### Setting a specialisation: `setSpecialisation`
 Adds a specialisation track to your profile. You can select up to **two** specialisations.
@@ -232,6 +232,28 @@ Completed modules:
 - CS1010
 - CS2040C
 ```
+
+### Unmarking a completed module: `unmarkDone`
+
+Removes a module from your completed modules list. Use this if you accidentally marked the wrong module as done.
+
+Format: `unmarkDone MODULE_CODE`
+
+* `MODULE_CODE` must be a module you have previously marked as done.
+* `MODULE_CODE` is case-insensitive.
+
+Examples:
+* `unmarkDone CS1010`
+* `unmarkDone CS2040C`
+
+Expected output:
+```
+Successfully unmarked CS1010 from your completed modules!
+```
+
+Error cases:
+* If module code is empty: `Please provide a module code. Format: unmarkDone <MODULE_CODE>`
+* If module not in completed list: `CS1010 is not in your completed modules list.`
 
 ### Checking your academic profile: `checkprofile`
 
