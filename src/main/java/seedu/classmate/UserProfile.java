@@ -1,8 +1,6 @@
 package seedu.classmate;
 
 import java.util.ArrayList;
-import seedu.classmate.Major;
-import seedu.classmate.Module;
 
 /**
  * Represents the user's personal academic profile within the application.
