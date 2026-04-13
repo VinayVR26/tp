@@ -1,0 +1,59 @@
+@startuml
+
+actor User
+participant ":ClassMate" as ClassMate
+participant ":Parser" as Parser
+participant ":CommandManager" as CommandManager
+participant "command:PrereqCommand" as command
+participant "major:Major" as Major
+participant "specOverview:specOverview" as SpecOverview
+participant "module:Module" as Module
+
+User -> ClassMate : "viewPrereqs CS2113"
+activate ClassMate
+
+ClassMate -> Parser : parse("viewPrereqs CS2113", ...)
+activate Parser
+
+Parser -> CommandManager : createCommand("viewPrereqs", "CS2113", ...)
+activate CommandManager
+
+create command
+CommandManager -> command : new PrereqCommand("CS2113")
+activate command
+command --> CommandManager
+deactivate command
+
+CommandManager --> Parser : command
+deactivate CommandManager
+
+Parser --> ClassMate : command
+deactivate Parser
+
+ClassMate -> command : executeCommand(major, ui, specOverview)
+activate command
+
+command -> Major : findModule("CS2113")
+activate Major
+Major --> command : module
+deactivate Major
+
+alt module == null
+    command -> SpecOverview : findSpecialisationModule("CS2113")
+    activate SpecOverview
+    SpecOverview --> command : module
+    deactivate SpecOverview
+end
+
+command -> Module : printPrereqTree(major)
+activate Module
+Module --> command : treeString
+deactivate Module
+
+command -> User : prints treeString
+
+command --> ClassMate
+deactivate command
+
+deactivate ClassMate
+@enduml

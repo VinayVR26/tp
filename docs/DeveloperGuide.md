@@ -23,20 +23,7 @@ The main components are described in the Components section below.
 ### Interaction between architecture components:
 The ***Sequence Diagram*** shows how the components interact with each other for the scenario when the user issues the command `viewPrereqs`
 
-```
-User      ClassMate    Parser   CommandManager  PrereqCommand  Major  SpecOvw
- |            |           |            |              |           |      |
- |--viewPrereqs CS2113---->           |              |           |      |
- |            |--parse(input)-------->|              |           |      |
- |            |           |--createCommand()-------->|           |      |
- |            |           |            |<--PrereqCmd-------------|      |
- |            |--executeCommand(...)---------------->|           |      |
- |            |           |            |             |--findModule(code)>|
- |            |           |            |             |<--module----------|  [if null: also checks SpecOvw]
- |            |           |            |             |--printPrereqTree(major)
- |            |           |            |             |<--tree string-----|
- |<--prints prereq tree---|            |             |           |      |
-```
+![viewPreReqsSequenceDiagram](resources/viewPreReqsSequenceDiagram.png)
 1. The user enters the command `viewPrereqs CS2113`.
 2. 'ClassMate' receives the input and passes it to the parser.
 3. The parser interprets the command word and creates the corresponding command object.
