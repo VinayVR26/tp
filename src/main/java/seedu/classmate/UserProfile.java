@@ -1,6 +1,8 @@
 package seedu.classmate;
 
 import java.util.ArrayList;
+import seedu.classmate.Major;
+import seedu.classmate.Module;
 
 /**
  * Represents the user's personal academic profile within the application.
@@ -63,10 +65,25 @@ public class UserProfile {
     }
 
     // @@author neerajehh
-    public void unmarkModuleDone(String moduleCode) throws ClassMateException {
+    public void unmarkModuleDone(String moduleCode, Major major) throws ClassMateException {
         String code = moduleCode.toUpperCase();
         if (!userCompletedModules.contains(code)) {
             throw new ClassMateException(code + " is not in your completed modules list.");
+        }
+        ArrayList<String> dependents = new ArrayList<>();
+        for (String completedCode : userCompletedModules) {
+            if (completedCode.equals(code)) {
+                continue;
+            }
+            Module m = major.findModule(completedCode);
+            if (m != null && m.getPrerequisites().contains(code)) {
+                dependents.add(completedCode);
+            }
+        }
+        if (!dependents.isEmpty()) {
+            throw new ClassMateException("Cannot unmark " + code
+                    + " as it is a prerequisite for: " + String.join(", ", dependents)
+                    + ". Please unmark those modules first.");
         }
         userCompletedModules.remove(code);
     }

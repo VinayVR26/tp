@@ -27,7 +27,7 @@ public class UnmarkDoneCommand extends Command {
         if (moduleCode.isEmpty()) {
             throw new ClassMateException("Please provide a module code. Format: unmarkDone <MODULE_CODE>");
         }
-        userProfile.unmarkModuleDone(moduleCode);
+        userProfile.unmarkModuleDone(moduleCode, major);
         storage.saveUserProfile(userProfile);
         logger.info("Unmarked " + moduleCode + " as done.");
         System.out.println("Successfully unmarked " + moduleCode + " from your completed modules!");
