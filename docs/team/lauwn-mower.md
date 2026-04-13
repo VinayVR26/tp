@@ -50,7 +50,7 @@ ClassMate is a CLI-based course planning assistant for NUS CEG students.
 
 * **Project Management contributions:**    
     * Updated shared GoogleDoc to track weekly tasks and happenings
-    * Authored a workflow for teammates to follow [Team-GoogleDoc-Workflow](https://docs.google.com/document/d/1lDx2Q-6_G2kFYOSqNSmqUyn80Z25JdtKvQ5ZFfafY78/edit?tab=t.wf6jpciy2lio)
+    * Authored a workflow for teammates to follow [Team-GoogleDoc-Workflow](../resources/CS2113-W11-4_GoogleDocWorkflow.pdf)
 
 ---
 * **Team-based tasks contributions:**
