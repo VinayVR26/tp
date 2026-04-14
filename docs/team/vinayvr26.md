@@ -5,9 +5,7 @@
 ClassMate is an academic assistance application to help CEG students make their university journey easier. 
 The user interacts with it using a CLI. It is written in Java.
 
-### These are my contributions to the project.
-
-#### Features
+#### These are my contributions to the project.
 
 * **New Feature: `ModulesLoader`**:
    * What it does: On application startup, two text files - `core-modules.txt` and `specialisation-modules.txt`,
@@ -39,9 +37,7 @@ The user interacts with it using a CLI. It is written in Java.
      much cognitive load in the user, leading to command failures. By removing these constraints, the user experience
      is more seamless.
 
-### Bugs Fixed
-
-* **v1.0 and 2.0**:
+* **Bugs Fixed (v1.0 and 2.0)**:
     * Added fallback logic to `QueryModuleAvailabilityCommand` and `CheckPrereqStatusCommand` classes to ensure
       that modules belonging only to the `Specialisation` class are correctly identified by the application, preventing
       false `Module not found` errors, which were happening because the module code was only checked against the major
@@ -50,7 +46,7 @@ The user interacts with it using a CLI. It is written in Java.
       via the commands. Hence, I added all the details (such as module name, code, units and semester availability) in 
       `specialisation.txt`, which helps in academic planning.
 
-* **v2.1: After PE Dry Run**:
+* **Bugs Fixed (v2.1: After PE Dry Run)**:
    * Fixed error where 6 specialisations were displayed in the application, when there are only 5 specialisations.
    * Converted `viewPreReqs` sequence diagram that was made from raw text to a plantUML diagram, 
      to standardise it with the other UML diagrams in the DG and also to show more logic details.
