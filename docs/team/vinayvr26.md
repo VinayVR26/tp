@@ -48,6 +48,8 @@ The user interacts with it using a CLI. It is written in Java.
 
 * **Bugs Fixed (v2.1: After PE Dry Run)**:
    * Fixed error where 6 specialisations were displayed in the application, when there are only 5 specialisations.
+   * Fixed a bug where modules that are prerequisites to specialisation modules were not compatible arguments with 
+     commands.
    * Converted `viewPreReqs` sequence diagram that was made from raw text to a plantUML diagram, 
      to standardise it with the other UML diagrams in the DG and also to show more logic details.
 
