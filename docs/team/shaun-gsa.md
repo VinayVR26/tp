@@ -30,6 +30,12 @@ Classmate is designed to help users view module information, check prerequisites
     * Refined the application execution flow so that command creation and command execution are clearly separated.
     * Supported future extensibility by ensuring new commands can be added with minimal changes to the parser and command manager.
 
+* **Bugs Fixed**:
+    * Fixed parser handling for empty or malformed input so that invalid commands are rejected consistently with a clear error message.
+    * Fixed help command output to stay in sync with newly added commands and updated command formats.
+    * Fixed command routing issues where certain valid commands were not passed correctly from the parser to the command manager.
+    * Fixed error handling for unknown commands, so the application now responds gracefully instead of failing unexpectedly.
+
 * **Code contributed:** [RepoSense link](https://nus-cs2113-ay2526-s2.github.io/tp-dashboard/?search=shaun-gsa)
 
 * **Documentation**:
